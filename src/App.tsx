@@ -1,8 +1,10 @@
+import RouterContext from './libs/contexts/RouterContext';
+
 function App() {
   return (
-    <div>
-      <div>asdasdsa d</div>
-    </div>
+    <>
+      <RouterContext />
+    </>
   );
 }
 
