@@ -1,12 +1,19 @@
-import notification from '@/assets/icons/notification.png';
+import { MouseEventHandler, ReactNode } from 'react';
 
-const Header = () => {
+interface IHeaderProp {
+  left?: ReactNode | string;
+  center?: string;
+  right?: ReactNode;
+  left_func?: MouseEventHandler<HTMLDivElement>;
+  right_func?: MouseEventHandler<HTMLDivElement>;
+}
+
+const Header = ({ left, center, right, left_func, right_func }: IHeaderProp) => {
   return (
-    <header className="flex h-12 items-center justify-between px-5">
-      <div>
-        <p className="font-bold">Logo</p>
-      </div>
-      <img src={notification} className="h-6 w-6"></img>
+    <header className="fixed top-0 z-50 flex h-12 w-full max-w-[410px] items-center justify-between px-5 text-center font-bold">
+      {left ? <div onClick={left_func}>{left}</div> : <div className="invisible" />}
+      {center && <p>{center}</p>}
+      {right ? <div onClick={right_func}>{right}</div> : <div className="invisible" />}
     </header>
   );
 };
