@@ -1,12 +1,42 @@
+import { useNavigate } from 'react-router-dom';
 import BottomNavigation from '../../components/@common/BottomNavigation';
 import Header from '../../components/@common/Header';
+import { useEffect, useRef, useState } from 'react';
 
 const TranslationPage = () => {
+  const navigate = useNavigate();
+
+  const imgRef = useRef<HTMLInputElement>(null);
+  const [postImg, setPostImg] = useState<File>();
+  const [previewImg, setPreviewImg] = useState<string>('');
+
+  // 이미지 저장
+  const saveImgFiles = () => {
+    if (imgRef.current && imgRef.current.files) {
+      const file: File = imgRef.current.files[0];
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onloadend = () => {
+        const result: string | null = reader.result as string;
+
+        setPreviewImg(result);
+        setPostImg(file);
+      };
+    }
+  };
+
+  useEffect(() => {
+    console.log(previewImg);
+    console.log(postImg);
+  }, [postImg, previewImg]);
+
   return (
     <>
       <div className="h-screen w-full">
-        <Header />
-        <div className="h-[calc(100vh-176px)] w-full px-5">
+        <Header center="자동 문서 번역" />
+        <div className="h-[calc(100vh-176px)] w-full px-5 pt-12">
           <div className="flex w-full flex-col gap-10">
             <div className="flex flex-col gap-2 py-5">
               <h1 className="text-xl font-bold">
@@ -23,13 +53,35 @@ const TranslationPage = () => {
               </div>
             </div>
             <div className="flex w-full flex-col gap-5">
-              <button className="rounded-lg bg-[#ECECEC] py-4 font-bold text-[#808080]">문서 촬영 하기</button>
-              <button className="rounded-lg bg-[#ECECEC] py-4 font-bold text-[#808080]">문서 업로드 하기</button>
+              <button
+                onClick={() => navigate('/preparing/shooting')}
+                className="rounded-lg bg-[#ECECEC] py-4 font-bold text-[#808080]"
+              >
+                문서 촬영 하기
+              </button>
+              <label
+                htmlFor="photo"
+                className="h-full w-full rounded-lg bg-[#ECECEC] py-4 text-center font-bold text-[#808080]"
+              >
+                <p>문서 업로드 하기</p>
+                <input
+                  name="photo"
+                  onChange={saveImgFiles}
+                  ref={imgRef}
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  id="photo"
+                  className="hidden h-full w-full cursor-pointer"
+                ></input>
+              </label>
             </div>
           </div>
         </div>
       </div>
-      <BottomNavigation />
+      <footer className="fixed bottom-0 h-28 w-full max-w-[410px] bg-white pt-3 shadow-top">
+        <BottomNavigation />
+      </footer>
     </>
   );
 };
