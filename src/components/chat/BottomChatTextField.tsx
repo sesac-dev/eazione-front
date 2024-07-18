@@ -28,7 +28,7 @@ const BottomChatTextField = () => {
         value={values.chat}
         onChange={changer}
         onKeyDown={e => e.key === 'Enter' && sendChatHandler()}
-        className="flex-1 bg-[#F5F5F5] p-3 outline-none"
+        className="flex-1 rounded-xl bg-[#F5F5F5] p-3 outline-none"
         type="text"
         placeholder="외국인 체류지 변경 신고 방법 알려줘!"
       />
