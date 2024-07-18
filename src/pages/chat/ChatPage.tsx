@@ -3,38 +3,26 @@ import Header from '../../components/@common/Header';
 import ChatInfo from '../../components/chat/ChatInfo';
 
 import useInput from '../../hooks/@common/useInput';
-import chatStore from '../../stores/chatStore';
+import chatStore, { IChat } from '../../stores/chatStore';
 import ChatRoom from '../../components/chat/ChatRoom';
-import OpenAI from 'openai';
 import { icons } from '../../constants/icons';
+import { openAIPrompt } from '../../constants/openAIPrompt';
+import useOpenAI from '../../hooks/@common/useOpenAI';
 
 const ChatPage = () => {
-  const { chatting, addChatting } = chatStore();
-
-  // input 태그 상태관리
+  const { chatting, addChatting, addChattingButton } = chatStore();
   const [values, changer, init] = useInput<{ chat: string }>({
     chat: '',
   });
 
-  const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true,
-  });
+  const { tailButtonInfo, getOpenAIRes } = useOpenAI(() => init());
 
-  const completion = async (content: string) => {
-    const res = await openai.chat.completions.create({
-      messages: [{ role: 'user', content: content }],
-      model: 'gpt-3.5-turbo',
-    });
-
-    console.log(res);
-  };
-
-  const sendChatHandler = () => {
+  const sendChatHandler = async () => {
     if (values.chat) {
-      addChatting({ target: 'user', content: values.chat });
-      completion(values.chat);
-      init();
+      addChatting([{ target: 'USER', content: values.chat, type: 'TEXT' }]);
+      const separator = await getOpenAIRes(openAIPrompt.basic, values.chat);
+      console.log(separator);
+      addChattingButton(separator.split(','), tailButtonInfo);
     }
   };
 
