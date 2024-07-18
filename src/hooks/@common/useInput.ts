@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 
-function useInput<T>(initValue: T): [T, (e: ChangeEvent<HTMLInputElement>) => void, () => void] {
+const useInput = <T>(initValue: T): [T, (e: ChangeEvent<HTMLInputElement>) => void, () => void] => {
   const [values, setValues] = useState<T>(initValue);
 
   const changer = (e: ChangeEvent<HTMLInputElement>) => {
@@ -13,6 +13,6 @@ function useInput<T>(initValue: T): [T, (e: ChangeEvent<HTMLInputElement>) => vo
   };
 
   return [values, changer, init];
-}
+};
 
 export default useInput;
