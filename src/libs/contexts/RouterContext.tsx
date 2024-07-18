@@ -4,11 +4,16 @@ import TranslationPage from '../../pages/translation/TranslationPage';
 import MyPage from '../../pages/my/MyPage';
 import PreparingShooting from '../../pages/translation/PreparingShooting';
 import ShootingPage from '../../pages/shooting/ShootingPage';
+import LoginPage from '../../pages/login/LoginPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <ChatPage />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
   {
     path: '/translation',
