@@ -79,9 +79,7 @@ const TranslationPage = () => {
           </div>
         </div>
       </div>
-      <footer className="fixed bottom-0 h-28 w-full max-w-[410px] bg-white pt-3 shadow-top">
-        <BottomNavigation />
-      </footer>
+      <BottomNavigation />
     </>
   );
 };

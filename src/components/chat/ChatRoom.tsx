@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import chatStore from '../../stores/chatStore';
 import TailButton from './TailButton';
+import chatBot from '@/assets/chatBot.png';
 
 const ChatRoom = () => {
   const chatEndRef = useRef<HTMLDivElement | null>(null);
@@ -21,14 +22,17 @@ const ChatRoom = () => {
             {chat.target === 'GPT' ? (
               <>
                 {chat.type === 'TEXT' ? (
-                  <p className="rounded-2xl bg-[#F5F5F5] px-3 py-4 text-sm">{`${chat.content}`}</p>
+                  <div className="">
+                    <img src={chatBot} className="mb-1"></img>
+                    <p className="bg-sub1 ml-[30px] rounded-b-2xl rounded-se-2xl px-3 py-4 text-sm">{`${chat.content}`}</p>
+                  </div>
                 ) : (
                   <TailButton content={chat.content!} clickEvent={chat.clickEventHandler!} />
                 )}
               </>
             ) : (
               <>
-                <p className="rounded-2xl bg-[#F5F5F5] px-3 py-4 text-sm">{`${chat.content}`}</p>
+                <p className="rounded-t-2xl rounded-bl-2xl bg-[#F5F5F5] px-3 py-4 text-sm">{`${chat.content}`}</p>
               </>
             )}
           </div>
