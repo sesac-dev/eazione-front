@@ -3,7 +3,6 @@ export const openAIPrompt = {
 1. Contains the word "신청"
 2. Contains the word "신청"
 3. Contains the word "추가 정보"
-4. Include phone number
 This example contains information about 1,2,3: your answer... $1,2,3`,
   location: `You are a helper who provides information about the immigration office.
 If you tell me the latitude and longitude, please tell me the information of the nearest immigration office

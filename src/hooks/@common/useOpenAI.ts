@@ -75,10 +75,12 @@ const useOpenAI = (initValue: () => void) => {
 
     const [lat, lng, name, phone] = separator.split(',').map(v => v.trim());
 
-    setPhone(phone);
-
+    const telLink = `tel:${phone}`;
     const naverRouteLink = `nmap://route/public?slat=${location?.latitude}&slng=${location?.longitude}&dlat=${lat}&dlng=${lng}&dname=${name}`;
+
     console.log(naverRouteLink);
+    console.log(telLink);
+    setPhone(phone);
 
     addChatting([
       {
@@ -91,7 +93,7 @@ const useOpenAI = (initValue: () => void) => {
         target: 'GPT',
         content: '전화 걸기',
         type: 'BUTTON',
-        clickEventHandler: callingButtonClickEventHandler,
+        clickEventHandler: () => (window.location.href = telLink),
       },
       {
         target: 'GPT',
@@ -104,7 +106,11 @@ const useOpenAI = (initValue: () => void) => {
 
   const pageCheckButtonClickEventHandler = () => window.open('https://www.hikorea.go.kr/Main.pt');
 
-  const callingButtonClickEventHandler = () => (document.location.href = `tel:${phone}`);
+  const callingButtonClickEventHandler = () => {
+    console.log(phone);
+    const telLink = `tel:${phone}`;
+    window.location.href = telLink;
+  };
 
   const tailButtonInfo: ITailButtonInfo[] = [
     {
@@ -129,7 +135,7 @@ const useOpenAI = (initValue: () => void) => {
     },
   ];
 
-  return { tailButtonInfo, getOpenAIRes };
+  return { phone, tailButtonInfo, getOpenAIRes };
 };
 
 export default useOpenAI;
