@@ -16,10 +16,10 @@ const Header = ({ left, center, right, left_func, right_func }: IHeaderProp) => 
           {left}
         </div>
       ) : (
-        <div className="invisible" />
+        <div className="invisible w-6" />
       )}
       {center && <p>{center}</p>}
-      {right ? <div onClick={right_func}>{right}</div> : <div className="invisible" />}
+      {right ? <div onClick={right_func}>{right}</div> : <div className="invisible w-6" />}
     </header>
   );
 };
