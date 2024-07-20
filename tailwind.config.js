@@ -27,6 +27,7 @@ export default {
     animation: {
       captureEnter: 'captureOn 0.3s ease-in-out',
       captureExit: 'captureOff 0.3s ease-in-out',
+      bounce: 'bounce 0.7s ease-in-out infinite',
     },
   },
   plugins: [],

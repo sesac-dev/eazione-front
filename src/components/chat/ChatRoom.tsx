@@ -42,9 +42,9 @@ const ChatRoom = () => {
             <img src={chatBot} className="mb-1"></img>
             <div className="flex w-full flex-col items-center justify-center gap-5">
               <div className="flex gap-10">
-                <div className="bg-tint_03 h-3 w-3 rounded-full"></div>
-                <div className="bg-tint_03 h-3 w-3 rounded-full"></div>
-                <div className="bg-tint_03 h-3 w-3 rounded-full"></div>
+                <div className="animate-bounce bg-tint_03 h-3 w-3 rounded-full"></div>
+                <div className="animate-bounce bg-tint_03 h-3 w-3 rounded-full"></div>
+                <div className="animate-bounce bg-tint_03 h-3 w-3 rounded-full"></div>
               </div>
               <p className="text-tint_04 text-sm">답변을 작성중입니다</p>
             </div>
