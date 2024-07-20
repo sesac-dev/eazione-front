@@ -3,6 +3,8 @@ import BottomNavigation from '../../components/@common/BottomNavigation';
 import Header from '../../components/@common/Header';
 import { useEffect, useRef, useState } from 'react';
 
+import translationInfo from '@/assets/translationInfo.png';
+
 const TranslationPage = () => {
   const navigate = useNavigate();
 
@@ -48,20 +50,18 @@ const TranslationPage = () => {
               </p>
             </div>
             <div className="flex w-full justify-center">
-              <div className="flex h-36 w-44 items-center justify-center bg-[#ECECEC] text-[#BCBCBC]">
-                <p>예시 이미지</p>
-              </div>
+              <img src={translationInfo} />
             </div>
             <div className="flex w-full flex-col gap-5">
               <button
                 onClick={() => navigate('/preparing/shooting')}
-                className="rounded-lg bg-[#ECECEC] py-4 font-bold text-[#808080]"
+                className="rounded-lg bg-primary py-4 font-bold text-white"
               >
                 문서 촬영 하기
               </button>
               <label
                 htmlFor="photo"
-                className="h-full w-full rounded-lg bg-[#ECECEC] py-4 text-center font-bold text-[#808080]"
+                className="h-full w-full rounded-lg bg-primary py-4 text-center font-bold text-white"
               >
                 <p>문서 업로드 하기</p>
                 <input

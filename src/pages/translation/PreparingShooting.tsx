@@ -2,14 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../components/@common/Header';
 import { icons } from '../../constants/icons';
 
+import preparingShootingInfo from '@/assets/preparingShootingInfo.png';
+
 const PreparingShooting = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="h-screen w-full">
-        <Header left={icons.BACK} left_func={() => navigate(-1)} />
-        <div className="h-[calc(100vh-176px)] w-full px-5 pt-12">
+      <div className="h-screen w-full max-w-[410px]">
+        <Header left={icons.BACK} left_func={() => navigate('/translation')} />
+        <div className="h-full w-full px-5 pt-12">
           <div className="flex w-full flex-col gap-10">
             <div className="flex flex-col gap-2 pt-5">
               <h1 className="text-xl font-bold">
@@ -21,17 +23,17 @@ const PreparingShooting = () => {
               </p>
             </div>
             <div className="flex w-full justify-center">
-              <div className="flex h-[431px] w-[336px] items-center justify-center bg-[#ECECEC] text-[#BCBCBC]">
-                <p>예시 이미지</p>
-              </div>
+              <img src={preparingShootingInfo} />
             </div>
-            <button
-              onClick={() => navigate('/shooting')}
-              className="rounded-lg bg-[#ECECEC] py-4 font-bold text-[#808080]"
-            >
-              문서 촬영 하기
-            </button>
           </div>
+        </div>
+        <div className="fixed bottom-5 w-full max-w-[410px] px-5">
+          <button
+            onClick={() => navigate('/shooting')}
+            className="w-full rounded-lg bg-primary py-4 font-bold text-white"
+          >
+            문서 촬영 하기
+          </button>
         </div>
       </div>
     </>

@@ -11,6 +11,20 @@ export default {
         sub1: '#E5EFFF',
         sub2: '#0048B2',
       },
+      keyframes: {
+        captureOn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        captureOff: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+      },
+    },
+    animation: {
+      captureEnter: 'captureOn 0.3s ease-in-out',
+      captureExit: 'captureOff 0.3s ease-in-out',
     },
   },
   plugins: [],
