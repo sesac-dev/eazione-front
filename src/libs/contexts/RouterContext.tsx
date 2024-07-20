@@ -6,6 +6,8 @@ import PreparingShooting from '../../pages/translation/PreparingShooting';
 import ShootingPage from '../../pages/shooting/ShootingPage';
 import LoginPage from '../../pages/login/LoginPage';
 import AutocompletePage from '../../pages/translation/AutocompletePage';
+import LoginRedirectPage from '../../pages/login/LoginRedirectPage';
+import SignUpPage from '../../pages/signup/SignUpPage';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/login/oauth2/code/google',
+    element: <LoginRedirectPage />,
+  },
+  {
+    path: '/signup',
+    element: <SignUpPage />,
   },
   {
     path: '/translation',

@@ -4,6 +4,10 @@ import kakao from '@/assets/kakao.png';
 import naver from '@/assets/naver.png';
 
 const LoginPage = () => {
+  const googleLogin = () => {
+    window.location.href = `https://accounts.google.com/o/oauth2/auth?client_id=${import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_GOOGLE_AUTH_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`;
+  };
+
   return (
     <>
       <div className="h-screen w-full">
@@ -19,7 +23,7 @@ const LoginPage = () => {
             <div className="flex h-full w-full flex-col items-center justify-center gap-5 pt-10">
               <img src={kakao} />
               <img src={naver} />
-              <img src={google} />
+              <img src={google} onClick={() => googleLogin()} />
               <img src={apple} />
             </div>
             <p className="text-center text-sm text-[#ADADAD]">

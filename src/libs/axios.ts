@@ -1,19 +1,24 @@
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const baseConfig = {
+const baseConfig: AxiosRequestConfig = {
   baseURL: import.meta.env.VITE_BASE_URL,
 };
 
 const reqInstance = axios.create(baseConfig);
 const multipartInstance = axios.create(baseConfig);
 
+const userStore = localStorage.getItem('user-store');
+const accessToken = userStore && JSON.parse(userStore).state.accessToken;
+
 const reqPrev = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
   config.headers['Content-Type'] = 'application/json';
+  config.headers['Authorization'] = `Bearer ${accessToken}`;
   return config;
 };
 
 const multipartReqPrev = (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
   config.headers['Content-Type'] = 'multipart/form-data';
+  config.headers['Authorization'] = `Bearer ${accessToken}`;
   return config;
 };
 
