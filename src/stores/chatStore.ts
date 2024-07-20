@@ -9,12 +9,15 @@ export interface IChat {
 }
 interface IChatStoreState {
   chatting: IChat[];
+  isLoading: boolean;
   addChatting: (chat: IChat[]) => void;
   addChattingButton: (buttonNoArr: string[], tailButtonInfo: ITailButtonInfo[]) => void;
+  setIsLoading: (state: boolean) => void;
 }
 
 const chatStore = create<IChatStoreState>(set => ({
   chatting: [],
+  isLoading: false,
   addChatting: (chat: IChat[]) =>
     set(prev => ({
       chatting: [...prev.chatting, ...chat],
@@ -34,6 +37,10 @@ const chatStore = create<IChatStoreState>(set => ({
       chatting: [...prev.chatting, ...btnInfo],
     }));
   },
+  setIsLoading: (state: boolean) =>
+    set(() => ({
+      isLoading: state,
+    })),
 }));
 
 export default chatStore;

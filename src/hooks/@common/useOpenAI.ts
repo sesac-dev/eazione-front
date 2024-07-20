@@ -14,7 +14,7 @@ export interface ITailButtonInfo {
 const useOpenAI = (initValue: () => void) => {
   const navigate = useNavigate();
   const { location } = useGeoLocation();
-  const { addChatting } = chatStore();
+  const { setIsLoading, addChatting } = chatStore();
 
   const [phone, setPhone] = useState<string>('');
 
@@ -24,6 +24,7 @@ const useOpenAI = (initValue: () => void) => {
   });
 
   const getOpenAIRes = async (prompt: string, content: string) => {
+    setIsLoading(true);
     initValue();
     const res = await openai.chat.completions.create({
       messages: [
@@ -39,7 +40,7 @@ const useOpenAI = (initValue: () => void) => {
     const [ans, sep] = res.choices[0].message.content?.split('$')!;
 
     addChatting([{ target: 'GPT', content: ans, type: 'TEXT' }]);
-
+    setIsLoading(false);
     return sep;
   };
 

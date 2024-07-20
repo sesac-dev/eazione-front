@@ -8,8 +8,10 @@ export default {
       },
       colors: {
         primary: '#0066FE',
-        sub1: '#E5EFFF',
-        sub2: '#0048B2',
+        shade_03: '#0048B2',
+        tint_01: '#E5EFFF',
+        tint_03: '#99C2FF',
+        tint_04: '#66A3FE',
       },
       keyframes: {
         captureOn: {
