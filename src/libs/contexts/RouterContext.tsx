@@ -5,6 +5,7 @@ import MyPage from '../../pages/my/MyPage';
 import PreparingShooting from '../../pages/translation/PreparingShooting';
 import ShootingPage from '../../pages/shooting/ShootingPage';
 import LoginPage from '../../pages/login/LoginPage';
+import AutocompletePage from '../../pages/translation/AutocompletePage';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: '/preparing/shooting',
     element: <PreparingShooting />,
+  },
+  {
+    path: '/autocomplete',
+    element: <AutocompletePage />,
   },
 ]);
 
