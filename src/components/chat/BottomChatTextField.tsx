@@ -40,7 +40,7 @@ const BottomChatTextField = () => {
         </div>
       )}
       <div className="relative mx-5 my-[10px] flex h-[50px] gap-2">
-        <div className="bg-ui_11 flex h-full w-full items-center rounded-xl">
+        <div className="flex h-full w-full items-center rounded-xl bg-ui_11">
           <div className="flex items-center gap-2 pl-3">
             <div>{icons.CAMERA}</div>
             <p className="h-[16px] w-[1px] bg-[#D9D9D9]"></p>
@@ -53,7 +53,7 @@ const BottomChatTextField = () => {
             value={values.chat}
             onChange={changer}
             onKeyDown={e => e.key === 'Enter' && sendChatHandler()}
-            className="bg-ui_11 flex-1 rounded-xl p-3 text-sm outline-none"
+            className="flex-1 rounded-xl bg-ui_11 p-3 text-sm outline-none"
             type="text"
             placeholder="외국인 체류지 변경 신고 방법 알려줘!"
           />
