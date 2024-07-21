@@ -17,7 +17,7 @@ const SignUpInfo = () => {
               인식된 정보를 한번 더 확인해 주세요. 신분증 정보와 다른 경우 다시 촬영하거나 정보를 수정해 주세요.
             </p>
           </div>
-          <div className="text-ui_06 flex h-full flex-col gap-5 overflow-y-scroll text-sm">
+          <div className="flex h-full flex-col gap-5 overflow-y-scroll text-sm text-ui_06">
             <div className="flex w-full flex-col gap-3">
               <p>외국인 등록번호</p>
               <input
@@ -70,8 +70,8 @@ const SignUpInfo = () => {
             </div>
             <div className="flex gap-5 pb-5 pt-7">
               <button
-                onClick={() => navigate('preparing')}
-                className="bg-ui_10 text-ui_01 w-full rounded-lg py-4 font-bold"
+                onClick={() => navigate('/signup/shooting')}
+                className="w-full rounded-lg bg-ui_10 py-4 font-bold text-ui_01"
               >
                 다시 촬영하기
               </button>

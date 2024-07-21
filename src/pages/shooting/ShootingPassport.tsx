@@ -34,72 +34,84 @@ const ShootingPassport = () => {
   }, []);
 
   const [captured, setCaptured] = useState<boolean>(false);
-  const [img, setImg] = useState<string>('');
+  // const [img, setImg] = useState<string>('');
 
-  const captureImage = () => {
-    const videoElement = videoRef.current;
-    const canvasElement = canvasRef.current;
-    const divElement = divRef.current;
+  // const captureImage = () => {
+  //   const videoElement = videoRef.current;
+  //   const canvasElement = canvasRef.current;
+  //   const divElement = divRef.current;
 
-    if (videoElement && canvasElement && divElement) {
-      const divRect = divElement.getBoundingClientRect();
-      const videoRect = videoElement.getBoundingClientRect();
+  //   if (videoElement && canvasElement && divElement) {
+  //     const divRect = divElement.getBoundingClientRect();
+  //     const videoRect = videoElement.getBoundingClientRect();
 
-      // 캡쳐 할 비디오 영역 계산
-      const left = divRect.left - videoRect.left;
-      const top = divRect.top - videoRect.top;
-      const width = divRect.width;
-      const height = divRect.height;
+  //     // 캡쳐 할 비디오 영역 계산
+  //     const left = divRect.left - videoRect.left;
+  //     const top = divRect.top - videoRect.top;
+  //     const width = divRect.width;
+  //     const height = divRect.height;
 
-      // 실제 비디오와 화면에 표시된 비디오의 스케일링 비율 계산
-      const scaleX = videoElement.videoWidth / videoRect.width;
-      const scaleY = videoElement.videoHeight / videoRect.height;
+  //     // 실제 비디오와 화면에 표시된 비디오의 스케일링 비율 계산
+  //     const scaleX = videoElement.videoWidth / videoRect.width;
+  //     const scaleY = videoElement.videoHeight / videoRect.height;
 
-      // 캔버스의 크기를 div와 동일하게 설정
-      canvasElement.width = width;
-      canvasElement.height = height;
+  //     // 캔버스의 크기를 div와 동일하게 설정
+  //     canvasElement.width = width;
+  //     canvasElement.height = height;
 
-      const context: CanvasRenderingContext2D | null = canvasElement.getContext('2d');
+  //     const context: CanvasRenderingContext2D | null = canvasElement.getContext('2d');
 
-      // video 태그에서 특정영역을 캔버스에 그림
-      context!.drawImage(
-        videoElement,
-        left * scaleX,
-        top * scaleY,
-        width * scaleX,
-        height * scaleY,
-        0,
-        0,
-        width,
-        height,
-      );
+  //     // video 태그에서 특정영역을 캔버스에 그림
+  //     context!.drawImage(
+  //       videoElement,
+  //       left * scaleX,
+  //       top * scaleY,
+  //       width * scaleX,
+  //       height * scaleY,
+  //       0,
+  //       0,
+  //       width,
+  //       height,
+  //     );
 
-      //캔버스에 그려진 내용을 URL문자열로 반환해준다.
-      const image = canvasElement.toDataURL('image/png');
+  //     //캔버스에 그려진 내용을 URL문자열로 반환해준다.
+  //     const image = canvasElement.toDataURL('image/png');
 
-      setCaptured(true);
+  //     setCaptured(true);
 
-      setTimeout(() => {
-        setImg(image);
-        setCaptured(false);
-      }, 250);
-    }
-  };
+  //     setTimeout(() => {
+  //       setImg(image);
+  //       setCaptured(false);
+  //     }, 250);
+  //   }
+  // };
 
   const { usePostDocsOCR } = useSignup();
   const { mutate: postDocsOCR } = usePostDocsOCR();
-  const handleRegisterClick = () => {
+  const handleRegisterClick = async () => {
     const formData = new FormData();
 
     if (docsType === 'foreginerfront') {
-      formData.append(docsType, front_foreignerRegister);
+      const response = await fetch(front_foreignerRegister);
+      const blob = await response.blob();
+      const file = new File([blob], 'front.jpg', { type: blob.type });
+
+      console.log(response);
+      console.log(blob);
+      console.log(file);
+      formData.append(docsType, file);
     } else if (docsType === 'foreginerback') {
-      formData.append(docsType, back_foreignerRegister);
+      const response = await fetch(back_foreignerRegister);
+      const blob = await response.blob();
+      formData.append(docsType, blob);
     } else if (docsType === 'passport') {
-      formData.append(docsType, passport);
+      const response = await fetch(passport);
+      const blob = await response.blob();
+      formData.append(docsType, blob);
     }
 
-    // postDocsOCR({ docsType, docs: formData });
+    console.log(formData);
+    postDocsOCR({ docsType, docs: formData });
     docsType === 'foreginerfront' && setDocsType('foreginerback');
 
     setCaptured(true);
