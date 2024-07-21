@@ -20,8 +20,8 @@ const ShootingPassport = () => {
 
   const getMediaPermission = useCallback(async () => {
     try {
-      const video = { audio: true, video: true };
-      // const video = { video: { facingMode: { exact: 'environment' } } };
+      // const video = { audio: true, video: true };
+      const video = { video: { facingMode: { exact: 'environment' } } };
       const videoStream = await navigator.mediaDevices.getUserMedia(video);
       setStream(videoStream);
 
