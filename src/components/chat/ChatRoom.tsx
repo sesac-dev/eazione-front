@@ -32,7 +32,7 @@ const ChatRoom = () => {
               </>
             ) : (
               <>
-                <p className="rounded-t-2xl rounded-bl-2xl bg-[#F5F5F5] px-3 py-4 text-sm">{`${chat.content}`}</p>
+                <p className="bg-ui_11 rounded-t-2xl rounded-bl-2xl px-3 py-4 text-sm">{`${chat.content}`}</p>
               </>
             )}
           </div>
