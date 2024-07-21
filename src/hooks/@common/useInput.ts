@@ -1,6 +1,8 @@
 import { useState, ChangeEvent } from 'react';
 
-const useInput = <T>(initValue: T): [T, (e: ChangeEvent<HTMLInputElement>) => void, () => void] => {
+const useInput = <T>(
+  initValue: T,
+): [T, (e: ChangeEvent<HTMLInputElement>) => void, () => void, (text: string) => void] => {
   const [values, setValues] = useState<T>(initValue);
 
   const changer = (e: ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +14,11 @@ const useInput = <T>(initValue: T): [T, (e: ChangeEvent<HTMLInputElement>) => vo
     setValues(initValue);
   };
 
-  return [values, changer, init];
+  const sttChanger = (text: string) => {
+    setValues({ ...values, ['chat']: text });
+  };
+
+  return [values, changer, init, sttChanger];
 };
 
 export default useInput;
