@@ -8,6 +8,10 @@ import LoginPage from '../../pages/login/LoginPage';
 import AutocompletePage from '../../pages/translation/AutocompletePage';
 import LoginRedirectPage from '../../pages/login/LoginRedirectPage';
 import SignUpPage from '../../pages/signup/SignUpPage';
+import UseAgree from '../../pages/signup/UseAgree';
+import PreparingSignUp from '../../pages/signup/PreparingSignUp';
+import ShootingPassport from '../../pages/shooting/ShootingPassport';
+import SignUpInfo from '../../pages/signup/SignUpInfo';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +29,24 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <SignUpPage />,
+    children: [
+      {
+        path: '',
+        element: <UseAgree />,
+      },
+      {
+        path: 'preparing',
+        element: <PreparingSignUp />,
+      },
+      {
+        path: 'shooting',
+        element: <ShootingPassport />,
+      },
+      {
+        path: 'register',
+        element: <SignUpInfo />,
+      },
+    ],
   },
   {
     path: '/translation',

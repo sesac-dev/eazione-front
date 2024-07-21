@@ -12,6 +12,11 @@ export default {
         tint_01: '#E5EFFF',
         tint_03: '#99C2FF',
         tint_04: '#66A3FE',
+        ui_01: '#333333',
+        ui_04: '#858585',
+        ui_06: '#ADADAD',
+        ui_10: '#EBEBEB',
+        ui_11: '#F5F5F5',
       },
       keyframes: {
         captureOn: {
