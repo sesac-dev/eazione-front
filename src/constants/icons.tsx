@@ -11,6 +11,7 @@ import mic from '@/assets/icons/mic.png';
 import camera from '@/assets/icons/camera.png';
 import notification from '@/assets/icons/notification.png';
 import bottom from '@/assets/icons/bottomArrow.png';
+import send from '@/assets/icons/send.png';
 
 export const icons: { [key: string]: ReactNode } = {
   DISABLE_CHAT: <img src={disable_chat} />,
@@ -24,6 +25,7 @@ export const icons: { [key: string]: ReactNode } = {
   CAMERA: <img src={camera}></img>,
   NOTIFICATION: <img src={notification}></img>,
   BOTTOM: <img src={bottom}></img>,
+  SEND: <img src={send}></img>,
 
   BACK: (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
