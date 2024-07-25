@@ -2,10 +2,21 @@ import { useEffect, useRef } from 'react';
 import chatStore from '../../stores/chatStore';
 import TailButton from './TailButton';
 import chatBot from '@/assets/chatBot.png';
+import chatLoading from '../../assets/lotties/chatLoading.json';
+import Lottie from 'lottie-react';
 
 const ChatRoom = () => {
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const { isLoading, chatting } = chatStore();
+
+  const chatLoadingOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: chatLoading,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
   useEffect(() => {
     if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: 'instant' });
@@ -32,21 +43,22 @@ const ChatRoom = () => {
               </>
             ) : (
               <>
-                <p className="bg-ui_11 rounded-t-2xl rounded-bl-2xl px-3 py-4 text-sm">{`${chat.content}`}</p>
+                <p className="rounded-t-2xl rounded-bl-2xl bg-ui_11 px-3 py-4 text-sm">{`${chat.content}`}</p>
               </>
             )}
           </div>
         ))}
-        {isLoading && (
+        {!isLoading && (
           <div className="py-5">
             <img src={chatBot} className="mb-1"></img>
-            <div className="flex w-full flex-col items-center justify-center gap-5">
-              <div className="flex gap-10">
+            <div className="relative flex w-full flex-col items-center justify-center gap-5">
+              <Lottie {...chatLoadingOptions} className="absolute -bottom-28 w-44" />
+              {/* <div className="flex gap-10">
                 <div className="h-3 w-3 animate-bounce rounded-full bg-tint_03"></div>
                 <div className="h-3 w-3 animate-bounce rounded-full bg-tint_03"></div>
                 <div className="h-3 w-3 animate-bounce rounded-full bg-tint_03"></div>
-              </div>
-              <p className="text-sm text-tint_04">답변을 작성중입니다</p>
+              </div> */}
+              <p className="absolute -bottom-24 text-sm text-tint_04">답변을 작성중입니다</p>
             </div>
           </div>
         )}
