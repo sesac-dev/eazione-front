@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '../../components/@common/Header';
 import { icons } from '../../constants/icons';
@@ -6,22 +6,22 @@ import camera from '@/assets/icons/camera.png';
 import { useSignup } from '../../hooks/signup/useSignup';
 import { ISignUpState } from '../signup/SignUpPage';
 
-import front_foreignerRegister from '@/assets/front_foreignerRegister.jpg';
-import back_foreignerRegister from '@/assets/back_foreignerRegister.jpg';
-import passport from '@/assets/passport.png';
+import { dataURLtoFile } from '../../utils/dataURLtoFile';
+import { useCapture } from '../../hooks/@common/useCapture';
+import Loading from '../../components/@common/Loading';
 
 const ShootingPassport = () => {
   const navigate = useNavigate();
   const { docsType, setDocsType } = useOutletContext<ISignUpState>();
   const [stream, setStream] = useState<MediaStream | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const divRef = useRef<HTMLDivElement>(null);
+  const { videoRef, setCanvas, setDiv, image } = useCapture();
+  const { usePostDocsOCR } = useSignup();
+  const { data, isPending, mutate: postDocsOCR } = usePostDocsOCR();
 
   const getMediaPermission = useCallback(async () => {
     try {
-      // const video = { audio: true, video: true };
-      const video = { video: { facingMode: { exact: 'environment' } } };
+      const video = { audio: true, video: true };
+      // const video = { video: { facingMode: { exact: 'environment' } } };
       const videoStream = await navigator.mediaDevices.getUserMedia(video);
       setStream(videoStream);
 
@@ -34,94 +34,24 @@ const ShootingPassport = () => {
   }, []);
 
   const [captured, setCaptured] = useState<boolean>(false);
-  // const [img, setImg] = useState<string>('');
-
-  // const captureImage = () => {
-  //   const videoElement = videoRef.current;
-  //   const canvasElement = canvasRef.current;
-  //   const divElement = divRef.current;
-
-  //   if (videoElement && canvasElement && divElement) {
-  //     const divRect = divElement.getBoundingClientRect();
-  //     const videoRect = videoElement.getBoundingClientRect();
-
-  //     // 캡쳐 할 비디오 영역 계산
-  //     const left = divRect.left - videoRect.left;
-  //     const top = divRect.top - videoRect.top;
-  //     const width = divRect.width;
-  //     const height = divRect.height;
-
-  //     // 실제 비디오와 화면에 표시된 비디오의 스케일링 비율 계산
-  //     const scaleX = videoElement.videoWidth / videoRect.width;
-  //     const scaleY = videoElement.videoHeight / videoRect.height;
-
-  //     // 캔버스의 크기를 div와 동일하게 설정
-  //     canvasElement.width = width;
-  //     canvasElement.height = height;
-
-  //     const context: CanvasRenderingContext2D | null = canvasElement.getContext('2d');
-
-  //     // video 태그에서 특정영역을 캔버스에 그림
-  //     context!.drawImage(
-  //       videoElement,
-  //       left * scaleX,
-  //       top * scaleY,
-  //       width * scaleX,
-  //       height * scaleY,
-  //       0,
-  //       0,
-  //       width,
-  //       height,
-  //     );
-
-  //     //캔버스에 그려진 내용을 URL문자열로 반환해준다.
-  //     const image = canvasElement.toDataURL('image/png');
-
-  //     setCaptured(true);
-
-  //     setTimeout(() => {
-  //       setImg(image);
-  //       setCaptured(false);
-  //     }, 250);
-  //   }
-  // };
-
-  const { usePostDocsOCR } = useSignup();
-  const { mutate: postDocsOCR } = usePostDocsOCR();
-  const handleRegisterClick = async () => {
-    const formData = new FormData();
-
-    if (docsType === 'foreginerfront') {
-      const response = await fetch(front_foreignerRegister);
-      const blob = await response.blob();
-      const file = new File([blob], 'front.jpg', { type: blob.type });
-
-      console.log(response);
-      console.log(blob);
-      console.log(file);
-      formData.append(docsType, file);
-    } else if (docsType === 'foreginerback') {
-      const response = await fetch(back_foreignerRegister);
-      const blob = await response.blob();
-      formData.append(docsType, blob);
-    } else if (docsType === 'passport') {
-      const response = await fetch(passport);
-      const blob = await response.blob();
-      formData.append(docsType, blob);
-    }
-
-    console.log(formData);
-    postDocsOCR({ docsType, docs: formData });
-    docsType === 'foreginerfront' && setDocsType('foreginerback');
-
+  const captureImage = () => {
     setCaptured(true);
+
+    const formData = new FormData();
+    formData.append('img', dataURLtoFile(image));
+
+    postDocsOCR({ docsType, docs: formData });
 
     setTimeout(() => {
       setCaptured(false);
     }, 250);
-
-    docsType !== 'foreginerfront' && navigate('/signup/register');
   };
+
+  useEffect(() => {
+    if (!isPending && data) {
+      docsType !== 'foreginerfront' ? navigate('/signup/register') : setDocsType('foreginerback');
+    }
+  }, [isPending, data]);
 
   useEffect(() => {
     // 아직 media stream이 설정되지 않았다면 호출
@@ -142,6 +72,7 @@ const ShootingPassport = () => {
       <div className={`relative h-full w-full text-white ${captured && 'animate-captureEnter'}`}>
         <video ref={videoRef} className="h-full w-full -scale-x-100 object-cover" autoPlay playsInline muted />
         <Header left={icons.WHITE_BACK} left_func={() => navigate(-1)} />
+        {isPending && <Loading />}
         <div className="absolute left-0 top-0 h-full w-full px-5 pt-12">
           <div className="flex h-full w-full flex-col items-center py-10 text-center">
             <p className="text-xl">신분증을 촬영하기 전 화면 가이드에 맞춰 외국인 등록증을 놓아주세요.</p>
@@ -149,11 +80,12 @@ const ShootingPassport = () => {
               {docsType === 'foreginerfront' ? '앞면' : docsType === 'foreginerback' ? '뒷면' : '여권'}
             </p>
             <div
-              ref={divRef}
+              ref={setDiv}
               className={`mb-5 rounded-2xl border-2 border-white ${docsType !== 'foreginerback' ? 'h-[210px] w-[330px]' : 'h-[330px] w-[210px]'}`}
             >
+              <img src={image}></img>
               <canvas
-                ref={canvasRef}
+                ref={setCanvas}
                 className={`hidden ${docsType !== 'foreginerback' ? 'h-[210px] w-[330px]' : 'h-[330px] w-[210px]'}`}
               />
             </div>
@@ -165,7 +97,7 @@ const ShootingPassport = () => {
         </div>
         <div className="fixed bottom-5 flex w-full max-w-[410px] flex-col items-center px-5">
           <div
-            onClick={() => handleRegisterClick()}
+            onClick={() => captureImage()}
             className="mb-5 mt-5 flex h-[64px] w-[64px] items-center justify-center rounded-full border-[4px] border-white"
           >
             <div className="flex h-[47px] w-[47px] items-center justify-center rounded-full bg-white">
