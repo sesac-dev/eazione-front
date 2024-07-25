@@ -4,15 +4,17 @@ import ChatInfo from '../../components/chat/ChatInfo';
 import ChatRoom from '../../components/chat/ChatRoom';
 
 import chatStore from '../../stores/chatStore';
-import { icons } from '../../constants/icons';
+import ezone from '../../assets/ezone.png';
 
 const ChatPage = () => {
   const { chatting } = chatStore();
 
+  const ezoneImg = <img src={ezone}></img>;
+
   return (
     <>
       <div className="h-screen w-full">
-        <Header left="EasiOne" right={icons.NOTIFICATION} />
+        <Header left={ezoneImg} />
         <div className="h-[calc(100vh-150px)] w-full pt-12 text-center">
           {chatting.length ? <ChatRoom /> : <ChatInfo />}
         </div>
