@@ -18,7 +18,7 @@ const Header = ({ left, center, right, left_func, right_func }: IHeaderProp) => 
       ) : (
         <div className="invisible w-6" />
       )}
-      {center && <p>{center}</p>}
+      {center && <p className="text-base font-semibold">{center}</p>}
       {right ? <div onClick={right_func}>{right}</div> : <div className="invisible w-6" />}
     </header>
   );

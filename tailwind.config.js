@@ -15,8 +15,10 @@ export default {
         ui_01: '#333333',
         ui_04: '#858585',
         ui_06: '#ADADAD',
+        ui_08: '#D6D6D6',
         ui_10: '#EBEBEB',
         ui_11: '#F5F5F5',
+        ui_12: '#F8F8F8',
       },
       keyframes: {
         captureOn: {
