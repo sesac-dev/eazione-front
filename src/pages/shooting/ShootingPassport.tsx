@@ -49,7 +49,11 @@ const ShootingPassport = () => {
 
   useEffect(() => {
     if (!isPending && data) {
-      docsType !== 'foreginerfront' ? navigate('/signup/register') : setDocsType('foreginerback');
+      docsType === 'foreginerfront'
+        ? setDocsType('foreginerback')
+        : docsType === 'foreginerback'
+          ? navigate('/signup/register/foreigner')
+          : navigate('/signup/register/passport');
     }
   }, [isPending, data]);
 

@@ -16,6 +16,7 @@ import notification from '@/assets/icons/notification.png';
 import bottom from '@/assets/icons/bottomArrow.png';
 import send from '@/assets/icons/send.png';
 import save from '@/assets/icons/save.png';
+import calendar from '@/assets/icons/calendar.png';
 
 export const icons: { [key: string]: ReactNode } = {
   DISABLE_CHAT: <img src={disable_chat} />,
@@ -34,6 +35,7 @@ export const icons: { [key: string]: ReactNode } = {
   BOTTOM: <img src={bottom}></img>,
   SEND: <img src={send}></img>,
   SAVE: <img src={save}></img>,
+  CALENDAR: <img src={calendar}></img>,
 
   BACK: (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
