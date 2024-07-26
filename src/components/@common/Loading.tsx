@@ -1,5 +1,5 @@
 import Lottie from 'lottie-react';
-import docsLoading from '../../assets/lotties/docsLoading.json';
+import docsLoading from '@/assets/lotties/docsLoading.json';
 
 const Loading = () => {
   const docsLoadingOptions = {

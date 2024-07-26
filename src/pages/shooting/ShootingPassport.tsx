@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import Header from '../../components/@common/Header';
-import { icons } from '../../constants/icons';
+import Header from '@/components/@common/Header';
+import { icons } from '@/constants/icons';
 import camera from '@/assets/icons/camera.png';
-import { useSignup } from '../../hooks/signup/useSignup';
+import { useSignup } from '@/hooks/signup/useSignup';
 import { ISignUpState } from '../signup/SignUpPage';
 
-import { dataURLtoFile } from '../../utils/dataURLtoFile';
-import { useCapture } from '../../hooks/@common/useCapture';
-import Loading from '../../components/@common/Loading';
+import { dataURLtoFile } from '@/utils/dataURLtoFile';
+import { useCapture } from '@/hooks/@common/useCapture';
+import Loading from '@/components/@common/Loading';
 
 const ShootingPassport = () => {
   const navigate = useNavigate();

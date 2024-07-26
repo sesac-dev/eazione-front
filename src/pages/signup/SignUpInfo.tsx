@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/@common/Header';
-import { icons } from '../../constants/icons';
+import Header from '@/components/@common/Header';
+import { icons } from '@/constants/icons';
 
 const SignUpInfo = () => {
   const navigate = useNavigate();

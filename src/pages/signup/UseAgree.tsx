@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { icons } from '../../constants/icons';
-import Header from '../../components/@common/Header';
+import { icons } from '@/constants/icons';
+import Header from '@/components/@common/Header';
 
 const UseAgree = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const UseAgree = () => {
           <div className="mt-5">
             {[1, 2, 3].map(v => {
               return (
-                <div key={v} className="text-ui_04 flex h-10 w-full items-center justify-between gap-3 px-3">
+                <div key={v} className="flex h-10 w-full items-center justify-between gap-3 px-3 text-ui_04">
                   <div className="flex gap-3">
                     <div>{agree ? icons.ENABLE_CHECK : icons.DISABLE_CHECK}</div>
                     <p>이용약관 내용</p>

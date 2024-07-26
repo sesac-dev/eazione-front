@@ -1,6 +1,6 @@
-import BottomNavigation from '../../components/@common/BottomNavigation';
-import Header from '../../components/@common/Header';
-import UserInfo from '../../components/my/UserInfo';
+import BottomNavigation from '@/components/@common/BottomNavigation';
+import Header from '@/components/@common/Header';
+import UserInfo from '@/components/my/UserInfo';
 
 const MyPage = () => {
   return (

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useAuth } from '../../hooks/auth/useAuth';
-import userStore from '../../stores/userStore';
+import { useAuth } from '@/hooks/auth/useAuth';
+import userStore from '@/stores/userStore';
 
 const LoginRedirectPage = () => {
   const [searchParams] = useSearchParams();

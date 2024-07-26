@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/@common/Header';
-import { icons } from '../../constants/icons';
+import Header from '@/components/@common/Header';
+import { icons } from '@/constants/icons';
 import camera from '@/assets/icons/camera.png';
 
 const ShootingPage = () => {

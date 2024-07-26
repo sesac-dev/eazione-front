@@ -1,7 +1,7 @@
-import apple from '@/assets/apple.png';
-import google from '@/assets/google.png';
-import kakao from '@/assets/kakao.png';
-import naver from '@/assets/naver.png';
+import apple from '@/assets/image/apple.png';
+import google from '@/assets/image/google.png';
+import kakao from '@/assets/image/kakao.png';
+import naver from '@/assets/image/naver.png';
 
 const LoginPage = () => {
   const googleLogin = () => {

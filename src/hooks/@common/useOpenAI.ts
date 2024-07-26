@@ -1,6 +1,6 @@
 import OpenAI from 'openai';
-import chatStore from '../../stores/chatStore';
-import { openAIPrompt } from '../../constants/openAIPrompt';
+import chatStore from '@/stores/chatStore';
+import { openAIPrompt } from '@/constants/openAIPrompt';
 import { useNavigate } from 'react-router-dom';
 import { useGeoLocation } from './useGeoLocation';
 import { useState } from 'react';

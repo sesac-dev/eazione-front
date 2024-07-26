@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getGoogleSignUp } from '../../services/auth/api';
+import { getGoogleSignUp } from '@/services/auth/api';
 
 export const useAuth = () => {
   const useGetGoogleSignUp = (code: string) => {

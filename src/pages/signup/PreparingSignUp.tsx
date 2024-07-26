@@ -1,8 +1,8 @@
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import Header from '../../components/@common/Header';
-import { icons } from '../../constants/icons';
+import Header from '@/components/@common/Header';
+import { icons } from '@/constants/icons';
 import { ISignUpState } from './SignUpPage';
-import preparingSignup from '@/assets/preparingSignup.png';
+import preparingSignup from '@/assets/image/preparingSignup.png';
 
 const PreparingSignUp = () => {
   const navigate = useNavigate();

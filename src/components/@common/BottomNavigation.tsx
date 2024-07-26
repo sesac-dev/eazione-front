@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { icons } from '../../constants/icons';
+import { icons } from '@/constants/icons';
 import BottomChatTextField from '../chat/BottomChatTextField';
 
 const BottomNavigation = () => {

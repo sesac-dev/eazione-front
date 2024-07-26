@@ -1,10 +1,10 @@
-import BottomNavigation from '../../components/@common/BottomNavigation';
-import Header from '../../components/@common/Header';
-import ChatInfo from '../../components/chat/ChatInfo';
-import ChatRoom from '../../components/chat/ChatRoom';
+import BottomNavigation from '@/components/@common/BottomNavigation';
+import Header from '@/components/@common/Header';
+import ChatInfo from '@/components/chat/ChatInfo';
+import ChatRoom from '@/components/chat/ChatRoom';
 
-import chatStore from '../../stores/chatStore';
-import ezone from '../../assets/ezone.png';
+import chatStore from '@/stores/chatStore';
+import ezone from '@/assets/image/ezone.png';
 
 const ChatPage = () => {
   const { chatting } = chatStore();

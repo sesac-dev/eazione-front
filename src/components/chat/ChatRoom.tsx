@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import chatStore from '../../stores/chatStore';
+import chatStore from '@/stores/chatStore';
 import TailButton from './TailButton';
-import chatBot from '@/assets/chatBot.png';
-import chatLoading from '../../assets/lotties/chatLoading.json';
+import chatBot from '@/assets/image/chatBot.png';
+import chatLoading from '@/assets/lotties/chatLoading.json';
 import Lottie from 'lottie-react';
 
 const ChatRoom = () => {

@@ -1,6 +1,6 @@
-import { reqInstance } from '../../libs/axios';
-import { APIResponse } from '../../types';
-import { ILoginRes } from '../../types/auth';
+import { reqInstance } from '@/libs/axios';
+import { APIResponse } from '@/types';
+import { ILoginRes } from '@/types/auth';
 
 /* 로그인 */
 export const getGoogleSignUp = async (code: string): Promise<APIResponse<ILoginRes>> => {

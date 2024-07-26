@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import BottomNavigation from '../../components/@common/BottomNavigation';
-import Header from '../../components/@common/Header';
+import BottomNavigation from '@/components/@common/BottomNavigation';
+import Header from '@/components/@common/Header';
 import { useEffect, useRef, useState } from 'react';
 
-import translationInfo from '@/assets/translationInfo.png';
+import translationInfo from '@/assets/image/translationInfo.png';
 
 const TranslationPage = () => {
   const navigate = useNavigate();

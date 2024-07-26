@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { postDocsOCR } from '../../services/signup/api';
+import { postDocsOCR } from '@/services/signup/api';
 
 export const useSignup = () => {
   const usePostDocsOCR = () => {

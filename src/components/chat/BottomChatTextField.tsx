@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { icons } from '../../constants/icons';
-import { openAIPrompt } from '../../constants/openAIPrompt';
-import useInput from '../../hooks/@common/useInput';
-import useOpenAI from '../../hooks/@common/useOpenAI';
-import chatStore from '../../stores/chatStore';
+import { icons } from '@/constants/icons';
+import { openAIPrompt } from '@/constants/openAIPrompt';
+import useInput from '@/hooks/@common/useInput';
+import useOpenAI from '@/hooks/@common/useOpenAI';
+import chatStore from '@/stores/chatStore';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import './bubble.css';
 

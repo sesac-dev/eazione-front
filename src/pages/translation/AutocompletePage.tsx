@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/@common/Header';
-import { icons } from '../../constants/icons';
-import { ITranslation, translationLanguage } from '../../constants/translationLanguage';
+import Header from '@/components/@common/Header';
+import { icons } from '@/constants/icons';
+import { ITranslation, translationLanguage } from '@/constants/translationLanguage';
 import { useState } from 'react';
-import TranslationComboBox from '../../components/translation/TranslationComboBox';
+import TranslationComboBox from '@/components/translation/TranslationComboBox';
 
 import sample from '@/assets/sample.jpg';
 

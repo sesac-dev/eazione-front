@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { icons } from '../../constants/icons';
-import { ITranslation, translationLanguage } from '../../constants/translationLanguage';
+import { icons } from '@/constants/icons';
+import { ITranslation, translationLanguage } from '@/constants/translationLanguage';
 
 interface ITranslationProps {
   selected: ITranslation;

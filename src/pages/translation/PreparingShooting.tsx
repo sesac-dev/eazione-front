@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/@common/Header';
-import { icons } from '../../constants/icons';
+import Header from '@/components/@common/Header';
+import { icons } from '@/constants/icons';
 
-import preparingShootingInfo from '@/assets/preparingShootingInfo.png';
+import preparingShootingInfo from '@/assets/image/preparingShootingInfo.png';
 
 const PreparingShooting = () => {
   const navigate = useNavigate();
