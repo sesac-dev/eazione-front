@@ -1,12 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 export const useCapture = () => {
-  const [image, setImage] = useState<string>('');
-
   const videoRef = useRef<HTMLVideoElement>(null);
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null | undefined>(null);
   const [div, setDiv] = useState<HTMLDivElement | null | undefined>(null);
-  useEffect(() => {
+
+  const getCanvasImage = () => {
     if (videoRef.current && canvas && div) {
       const divRect = div.getBoundingClientRect();
       const videoRect = videoRef.current.getBoundingClientRect();
@@ -42,9 +41,9 @@ export const useCapture = () => {
 
       const canvasImage = canvas.toDataURL('image/png');
 
-      setImage(canvasImage);
+      return canvasImage;
     }
-  }, [videoRef, canvas, div]);
+  };
 
-  return { videoRef, setCanvas, setDiv, image };
+  return { videoRef, setCanvas, setDiv, getCanvasImage };
 };

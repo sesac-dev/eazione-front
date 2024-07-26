@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/@common/Header';
 import { icons } from '@/constants/icons';
-import camera from '@/assets/icons/camera.png';
 import { useSignup } from '@/hooks/signup/useSignup';
 import { ISignUpState } from '../signup/SignUpPage';
 
@@ -14,7 +13,7 @@ const ShootingPassport = () => {
   const navigate = useNavigate();
   const { docsType, setDocsType } = useOutletContext<ISignUpState>();
   const [stream, setStream] = useState<MediaStream | null>(null);
-  const { videoRef, setCanvas, setDiv, image } = useCapture();
+  const { videoRef, setCanvas, setDiv, getCanvasImage } = useCapture();
   const { usePostDocsOCR } = useSignup();
   const { data, isPending, mutate: postDocsOCR } = usePostDocsOCR();
 
@@ -38,6 +37,7 @@ const ShootingPassport = () => {
     setCaptured(true);
 
     const formData = new FormData();
+    const image = getCanvasImage()!;
     formData.append('img', dataURLtoFile(image));
 
     postDocsOCR({ docsType, docs: formData });
@@ -83,7 +83,6 @@ const ShootingPassport = () => {
               ref={setDiv}
               className={`mb-5 rounded-2xl border-2 border-white ${docsType !== 'foreginerback' ? 'h-[210px] w-[330px]' : 'h-[330px] w-[210px]'}`}
             >
-              <img src={image}></img>
               <canvas
                 ref={setCanvas}
                 className={`hidden ${docsType !== 'foreginerback' ? 'h-[210px] w-[330px]' : 'h-[330px] w-[210px]'}`}
@@ -101,7 +100,7 @@ const ShootingPassport = () => {
             className="mb-5 mt-5 flex h-[64px] w-[64px] items-center justify-center rounded-full border-[4px] border-white"
           >
             <div className="flex h-[47px] w-[47px] items-center justify-center rounded-full bg-white">
-              <img src={camera} className="h-[30px] w-[30px] object-cover" />
+              {icons.DOCS_CAMERA}
             </div>
           </div>
           <button className="w-full rounded-lg bg-primary py-4 font-bold text-white">직접 입력하기</button>
