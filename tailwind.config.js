@@ -14,6 +14,7 @@ export default {
         tint_04: '#66A3FE',
         ui_01: '#333333',
         ui_04: '#858585',
+        ui_05: '#999999',
         ui_06: '#ADADAD',
         ui_08: '#D6D6D6',
         ui_10: '#EBEBEB',

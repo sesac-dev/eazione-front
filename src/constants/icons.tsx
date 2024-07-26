@@ -10,10 +10,12 @@ import enable_my from '@/assets/icons/enable_my.png';
 import enable_check from '@/assets/icons/enable_check.png';
 
 import mic from '@/assets/icons/mic.png';
-import camera from '@/assets/icons/camera.png';
+import docs_camera from '@/assets/icons/docs_camera.png';
+import text_camera from '@/assets/icons/text_camera.png';
 import notification from '@/assets/icons/notification.png';
 import bottom from '@/assets/icons/bottomArrow.png';
 import send from '@/assets/icons/send.png';
+import save from '@/assets/icons/save.png';
 
 export const icons: { [key: string]: ReactNode } = {
   DISABLE_CHAT: <img src={disable_chat} />,
@@ -26,10 +28,12 @@ export const icons: { [key: string]: ReactNode } = {
   ENABLE_CHECK: <img src={enable_check} />,
 
   MIC: <img src={mic} />,
-  CAMERA: <img src={camera}></img>,
+  DOCS_CAMERA: <img src={docs_camera}></img>,
+  TEXT_CAMERA: <img src={text_camera}></img>,
   NOTIFICATION: <img src={notification}></img>,
   BOTTOM: <img src={bottom}></img>,
   SEND: <img src={send}></img>,
+  SAVE: <img src={save}></img>,
 
   BACK: (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">

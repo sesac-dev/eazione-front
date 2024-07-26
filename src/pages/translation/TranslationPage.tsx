@@ -30,8 +30,14 @@ const TranslationPage = () => {
   };
 
   useEffect(() => {
-    console.log(previewImg);
-    console.log(postImg);
+    if (postImg && previewImg) {
+      navigate('/autocomplete', {
+        state: {
+          previewImg,
+          postImg,
+        },
+      });
+    }
   }, [postImg, previewImg]);
 
   return (

@@ -6,8 +6,10 @@ import useOpenAI from '@/hooks/@common/useOpenAI';
 import chatStore from '@/stores/chatStore';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import './bubble.css';
+import { useNavigate } from 'react-router-dom';
 
 const BottomChatTextField = () => {
+  const navigate = useNavigate();
   const { addChatting, addChattingButton } = chatStore();
   const [values, changer, init, sttChanger] = useInput<{ chat: string }>({
     chat: '',
@@ -42,7 +44,7 @@ const BottomChatTextField = () => {
       <div className="relative mx-5 my-[10px] flex h-[50px] gap-2">
         <div className="flex h-full w-full items-center rounded-xl bg-ui_11">
           <div className="flex items-center gap-2 pl-3">
-            <div>{icons.CAMERA}</div>
+            <div onClick={() => navigate('/shooting')}>{icons.TEXT_CAMERA}</div>
             <p className="h-[16px] w-[1px] bg-[#D9D9D9]"></p>
             <div onClick={() => SpeechRecognition.startListening({ continuous: true, language: 'ko' })}>
               {icons.MIC}

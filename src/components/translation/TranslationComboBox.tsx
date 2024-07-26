@@ -11,7 +11,7 @@ const TranslationComboBox = ({ selected, setSelected }: ITranslationProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="w-52 text-sm">
+    <div className="w-56 text-sm">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex h-12 items-center justify-between rounded-lg border border-[#E1E1E1] px-3"
@@ -20,7 +20,7 @@ const TranslationComboBox = ({ selected, setSelected }: ITranslationProps) => {
         <div>{icons.BOTTOM}</div>
       </div>
       {isOpen && (
-        <div className="absolute mt-2 w-52 rounded-lg">
+        <div className="absolute mt-2 w-56 rounded-lg">
           {translationLanguage
             .filter(v => v.id !== 0)
             .map(value => {
