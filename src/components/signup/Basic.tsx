@@ -24,6 +24,7 @@ const Basic = () => {
         setPreviewImg(result);
         setPostImg(file);
       };
+      console.log(postImg);
     }
   };
 
