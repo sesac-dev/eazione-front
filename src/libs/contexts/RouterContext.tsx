@@ -15,6 +15,7 @@ import SignUpInfo from '@/pages/signup/SignUpInfo';
 import ForeignerRegister from '@/components/signup/ForeignerRegister';
 import Passport from '@/components/signup/Passport';
 import Basic from '@/components/signup/Basic';
+import DocsPage from '@/pages/my/DocsPage';
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
   {
     path: '/my',
     element: <MyPage />,
+  },
+  {
+    path: '/my/docs',
+    element: <DocsPage />,
   },
   {
     path: '/shooting',

@@ -29,9 +29,9 @@ const BottomNavigation = () => {
           </li>
           <li
             onClick={() => navigate('/my')}
-            className={`flex flex-col items-center justify-center ${pathname === '/my' ? 'text-primary' : 'text-[#C2C2C2]'}`}
+            className={`flex flex-col items-center justify-center ${pathname.split('/')[1] === 'my' ? 'text-primary' : 'text-[#C2C2C2]'}`}
           >
-            {pathname === '/my' ? icons.ENABLE_MY : icons.DISABLE_MY}
+            {pathname.split('/')[1] === 'my' ? icons.ENABLE_MY : icons.DISABLE_MY}
             <p>마이페이지</p>
           </li>
         </ul>

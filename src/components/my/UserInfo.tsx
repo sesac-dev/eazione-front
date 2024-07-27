@@ -1,6 +1,9 @@
 import { icons } from '@/constants/icons';
+import { useNavigate } from 'react-router-dom';
 
 const UserInfo = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="flex items-center gap-3 pt-10">
@@ -22,7 +25,7 @@ const UserInfo = () => {
       </div>
       <div>
         <p className="pb-2 text-left text-lg font-bold">마이 문서함</p>
-        <div className="flex items-center gap-5 rounded-lg bg-ui_12 p-3">
+        <div onClick={() => navigate('docs')} className="flex items-center gap-5 rounded-lg bg-ui_12 p-3">
           <p>저장한 문서</p>
           <p className="text-[13px] text-ui_08">등록된 외국인 등록증이 없습니다</p>
         </div>
