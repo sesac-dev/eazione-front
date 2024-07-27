@@ -12,7 +12,7 @@ const DocsPage = () => {
         <Header left={icons.BACK} center="마이 문서함" left_func={() => navigate(-1)} />
         <div className="h-[calc(100vh-60px)] w-full px-5 pb-10 pt-20 text-center">
           <div className="grid h-full grid-flow-row grid-cols-3 gap-3 overflow-y-auto">
-            {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((value, index) => {
+            {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map(() => {
               return (
                 <div className="flex flex-col items-center justify-center gap-2 py-3 text-sm text-ui_01">
                   <img src={docs} />
