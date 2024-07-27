@@ -16,11 +16,16 @@ import ForeignerRegister from '@/components/signup/ForeignerRegister';
 import Passport from '@/components/signup/Passport';
 import Basic from '@/components/signup/Basic';
 import DocsPage from '@/pages/my/DocsPage';
+import SplashPage from '@/pages/splash/SplashPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <ChatPage />,
+  },
+  {
+    path: '/splash',
+    element: <SplashPage />,
   },
   {
     path: '/login',
