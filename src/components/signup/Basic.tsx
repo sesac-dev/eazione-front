@@ -1,32 +1,11 @@
 import Header from '../@common/Header';
 import { icons } from '@/constants/icons';
-import { useRef, useState } from 'react';
+import useSaveImageFile from '@/hooks/@common/useSaveImageFile';
 import { useNavigate } from 'react-router-dom';
 
 const Basic = () => {
   const navigate = useNavigate();
-
-  const imgRef = useRef<HTMLInputElement>(null);
-  const [postImg, setPostImg] = useState<File>();
-  const [previewImg, setPreviewImg] = useState<string>('');
-
-  // 이미지 저장
-  const saveImgFiles = () => {
-    if (imgRef.current && imgRef.current.files) {
-      const file: File = imgRef.current.files[0];
-
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onloadend = () => {
-        const result: string | null = reader.result as string;
-
-        setPreviewImg(result);
-        setPostImg(file);
-      };
-      console.log(postImg);
-    }
-  };
+  const { imgRef, previewImg, saveImgFiles } = useSaveImageFile();
 
   return (
     <>

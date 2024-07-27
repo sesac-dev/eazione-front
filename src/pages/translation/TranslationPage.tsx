@@ -1,33 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import BottomNavigation from '@/components/@common/BottomNavigation';
 import Header from '@/components/@common/Header';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 
 import translationInfo from '@/assets/image/translationInfo.png';
+import useSaveImageFile from '@/hooks/@common/useSaveImageFile';
 
 const TranslationPage = () => {
   const navigate = useNavigate();
-
-  const imgRef = useRef<HTMLInputElement>(null);
-  const [postImg, setPostImg] = useState<File>();
-  const [previewImg, setPreviewImg] = useState<string>('');
-
-  // 이미지 저장
-  const saveImgFiles = () => {
-    if (imgRef.current && imgRef.current.files) {
-      const file: File = imgRef.current.files[0];
-
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onloadend = () => {
-        const result: string | null = reader.result as string;
-
-        setPreviewImg(result);
-        setPostImg(file);
-      };
-    }
-  };
+  const { imgRef, postImg, previewImg, saveImgFiles } = useSaveImageFile();
 
   useEffect(() => {
     if (postImg && previewImg) {
