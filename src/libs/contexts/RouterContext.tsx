@@ -14,6 +14,7 @@ import ShootingPassport from '@/pages/shooting/ShootingPassport';
 import SignUpInfo from '@/pages/signup/SignUpInfo';
 import ForeignerRegister from '@/components/signup/ForeignerRegister';
 import Passport from '@/components/signup/Passport';
+import Basic from '@/components/signup/Basic';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <UseAgree />,
+      },
+      {
+        path: 'basic',
+        element: <Basic />,
       },
       {
         path: 'preparing',

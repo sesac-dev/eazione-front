@@ -40,10 +40,7 @@ const UseAgree = () => {
         </div>
       </div>
       <div className="fixed bottom-5 w-full max-w-[410px] px-5">
-        <button
-          onClick={() => navigate('preparing')}
-          className="w-full rounded-lg bg-primary py-4 font-bold text-white"
-        >
+        <button onClick={() => navigate('basic')} className="w-full rounded-lg bg-primary py-4 font-bold text-white">
           다음
         </button>
       </div>
