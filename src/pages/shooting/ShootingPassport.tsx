@@ -107,7 +107,14 @@ const ShootingPassport = () => {
               {icons.DOCS_CAMERA}
             </div>
           </div>
-          <button className="w-full rounded-lg bg-primary py-4 font-bold text-white">직접 입력하기</button>
+          <button
+            onClick={() => {
+              docsType === 'passport' ? navigate('/signup/register/passport') : navigate('/signup/register/foreigner');
+            }}
+            className="w-full rounded-lg bg-primary py-4 font-bold text-white"
+          >
+            직접 입력하기
+          </button>
         </div>
       </div>
     </>
