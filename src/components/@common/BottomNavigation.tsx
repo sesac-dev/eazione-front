@@ -8,16 +8,16 @@ const BottomNavigation = () => {
 
   return (
     <footer
-      className={`${pathname === '/' ? 'h-[150px]' : 'h-[80px]'} fixed bottom-0 w-full max-w-[410px] bg-white shadow-top`}
+      className={`${pathname === '/chat' ? 'h-[150px]' : 'h-[80px]'} fixed bottom-0 w-full max-w-[410px] bg-white shadow-top`}
     >
-      {pathname === '/' && <BottomChatTextField />}
+      {pathname === '/chat' && <BottomChatTextField />}
       <nav>
         <ul className="flex w-full items-center justify-between px-10 text-xs font-semibold">
           <li
-            onClick={() => navigate('/')}
-            className={`flex flex-col items-center justify-center ${pathname === '/' ? 'text-primary' : 'text-[#C2C2C2]'}`}
+            onClick={() => navigate('/chat')}
+            className={`flex flex-col items-center justify-center ${pathname === '/chat' ? 'text-primary' : 'text-[#C2C2C2]'}`}
           >
-            {pathname === '/' ? icons.ENABLE_CHAT : icons.DISABLE_CHAT}
+            {pathname === '/chat' ? icons.ENABLE_CHAT : icons.DISABLE_CHAT}
             <p>AI 채팅/검색</p>
           </li>
           <li

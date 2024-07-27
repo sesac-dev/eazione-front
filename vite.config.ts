@@ -8,5 +8,5 @@ export default defineConfig({
     alias: [{ find: '@', replacement: '/src' }],
   },
   build: { chunkSizeWarningLimit: 1600 },
-  base: '/splash',
+  base: '/',
 });

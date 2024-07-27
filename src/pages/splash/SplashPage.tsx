@@ -8,7 +8,7 @@ const SplashPage = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigate('/');
+      navigate('/chat');
     }, 3000);
 
     return () => clearTimeout(timeout);

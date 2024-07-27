@@ -21,11 +21,11 @@ import SplashPage from '@/pages/splash/SplashPage';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <ChatPage />,
+    element: <SplashPage />,
   },
   {
-    path: '/splash',
-    element: <SplashPage />,
+    path: '/chat',
+    element: <ChatPage />,
   },
   {
     path: '/login',
