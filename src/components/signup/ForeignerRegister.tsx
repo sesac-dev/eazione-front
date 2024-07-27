@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import 'react-datepicker/dist/react-datepicker.css';
 import { useState } from 'react';
 
 const ForeignerRegister = () => {
