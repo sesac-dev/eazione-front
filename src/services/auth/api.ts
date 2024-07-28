@@ -4,7 +4,7 @@ import { ILoginRes } from '@/types/auth';
 
 /* 로그인 */
 export const getGoogleSignUp = async (code: string): Promise<APIResponse<ILoginRes>> => {
-  const { data } = await reqInstance.get('/members/oauth/google/signup/l', {
+  const { data } = await reqInstance.get('/members/oauth/google/signup/d', {
     params: {
       code,
     },
