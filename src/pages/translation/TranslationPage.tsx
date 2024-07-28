@@ -16,6 +16,7 @@ const TranslationPage = () => {
         state: {
           previewImg,
           postImg,
+          prev: 'upload',
         },
       });
     }

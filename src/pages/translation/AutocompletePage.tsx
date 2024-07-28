@@ -10,7 +10,6 @@ const AutocompletePage = () => {
   const location = useLocation();
   const [selected, setSelected] = useState<ITranslation>(translationLanguage[0]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
   return (
     <>
       {isModalOpen ? (
@@ -19,7 +18,10 @@ const AutocompletePage = () => {
             {icons.CANCEL}
           </div>
           <div className="flex h-full w-full items-center justify-center pb-24">
-            <img src={location.state ? location.state.previewImg : ''} className="h-full w-full object-contain" />
+            <img
+              src={location.state.previewImg}
+              className={`h-full w-full rounded-lg object-contain ${location.state && location.state.prev === 'shooting' && '-scale-x-100'}`}
+            />
           </div>
         </div>
       ) : (
@@ -28,7 +30,7 @@ const AutocompletePage = () => {
           <div className="flex h-full w-full flex-col gap-5 px-5 pt-16">
             <div className="flex items-center justify-between gap-5">
               <TranslationComboBox selected={selected} setSelected={setSelected} />
-              <div className="text-ui_05 flex flex-col items-center justify-center gap-1 text-sm">
+              <div className="flex flex-col items-center justify-center gap-1 text-sm text-ui_05">
                 {icons.SAVE}
                 <p>저장하기</p>
               </div>
@@ -37,7 +39,7 @@ const AutocompletePage = () => {
               <img
                 onClick={() => setIsModalOpen(true)}
                 src={location.state ? location.state.previewImg : ''}
-                className="h-full w-full -scale-x-100 rounded-lg object-contain"
+                className={`h-full w-full rounded-lg object-cover ${location.state && location.state.prev === 'shooting' && '-scale-x-100'}`}
               />
             </div>
             <button className="mb-5 mt-10 w-full rounded-lg bg-primary py-4 font-bold text-white">자동 완성</button>

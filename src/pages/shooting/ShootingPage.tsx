@@ -45,6 +45,7 @@ const ShootingPage = () => {
         state: {
           previewImg: image,
           postImg: dataURLtoFile(image),
+          prev: 'shooting',
         },
       });
     }
