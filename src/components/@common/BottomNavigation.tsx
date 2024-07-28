@@ -8,7 +8,7 @@ const BottomNavigation = () => {
 
   return (
     <footer
-      className={`${pathname === '/chat' ? 'h-[150px]' : 'h-[80px]'} fixed bottom-0 w-full max-w-[410px] bg-white shadow-top`}
+      className={`${pathname === '/chat' ? 'h-[150px]' : 'h-[80px]'} fixed bottom-0 left-0 right-0 m-auto w-full max-w-[410px] bg-white shadow-top`}
     >
       {pathname === '/chat' && <BottomChatTextField />}
       <nav>

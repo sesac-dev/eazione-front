@@ -47,7 +47,7 @@ const PreparingSignUp = () => {
         </div>
         <div
           onClick={() => navigate('/chat')}
-          className="fixed bottom-20 left-0 right-0 w-full max-w-[410px] text-center text-[#A7A7A7] underline"
+          className="fixed bottom-20 left-0 right-0 m-auto w-full max-w-[410px] text-center text-[#A7A7A7] underline"
         >
           <p>나중에 등록하기</p>
         </div>
