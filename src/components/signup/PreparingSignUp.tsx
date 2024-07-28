@@ -1,7 +1,7 @@
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/@common/Header';
 import { icons } from '@/constants/icons';
-import { ISignUpState } from './SignUpPage';
+import { ISignUpState } from '../../pages/signup/SignUpPage';
 import preparingSignup from '@/assets/image/preparingSignup.png';
 
 const PreparingSignUp = () => {
