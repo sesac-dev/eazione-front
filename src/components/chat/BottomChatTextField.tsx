@@ -32,6 +32,12 @@ const BottomChatTextField = () => {
     sttChanger(transcript);
   }, [transcript]);
 
+  useEffect(() => {
+    return () => {
+      if (listening) SpeechRecognition.stopListening();
+    };
+  }, []);
+
   return (
     <>
       {listening && (
