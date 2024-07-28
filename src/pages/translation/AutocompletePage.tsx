@@ -2,14 +2,39 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '@/components/@common/Header';
 import { icons } from '@/constants/icons';
 import { ITranslation, translationLanguage } from '@/constants/translationLanguage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TranslationComboBox from '@/components/translation/TranslationComboBox';
+import korean_docs from '@/assets/korean_docs.png';
+import spanish_docs from '@/assets/spanish_docs.png';
+import japan_docs from '@/assets/japan_docs.png';
+import chinese_docs from '@/assets/chinese_docs.png';
+import arabic_docs from '@/assets/arabic_docs.png';
 
 const AutocompletePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selected, setSelected] = useState<ITranslation>(translationLanguage[0]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const [docsImg, setDocsImg] = useState<string>('');
+
+  useEffect(() => {
+    if (selected.id === 1) {
+      setDocsImg(korean_docs);
+    } else if (selected.id === 2) {
+      setDocsImg(spanish_docs);
+    } else if (selected.id === 3) {
+      setDocsImg(japan_docs);
+    } else if (selected.id === 4) {
+      setDocsImg(chinese_docs);
+    } else if (selected.id === 5) {
+      setDocsImg(arabic_docs);
+    } else {
+      setDocsImg(korean_docs);
+    }
+    console.log(selected);
+  }, [selected]);
+
   return (
     <>
       {isModalOpen ? (
@@ -19,7 +44,8 @@ const AutocompletePage = () => {
           </div>
           <div className="flex h-full w-full items-center justify-center pb-24">
             <img
-              src={location.state.previewImg}
+              src={docsImg}
+              // src={location.state.previewImg}
               className={`h-full w-full rounded-lg object-contain ${location.state && location.state.prev === 'shooting' && '-scale-x-100'}`}
             />
           </div>
@@ -38,7 +64,8 @@ const AutocompletePage = () => {
             <div className="h-full w-full rounded-lg border border-[#D6D6D6]">
               <img
                 onClick={() => setIsModalOpen(true)}
-                src={location.state ? location.state.previewImg : ''}
+                // src={location.state.previewImg}
+                src={docsImg}
                 className={`h-full w-full rounded-lg object-cover ${location.state && location.state.prev === 'shooting' && '-scale-x-100'}`}
               />
             </div>
