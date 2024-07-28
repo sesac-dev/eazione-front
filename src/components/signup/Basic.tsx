@@ -105,7 +105,10 @@ const Basic = () => {
             </div>
 
             <div className="flex gap-5 pb-5 pt-7">
-              <button onClick={() => navigate('/')} className="w-full rounded-lg bg-ui_10 py-4 font-bold text-ui_01">
+              <button
+                onClick={() => navigate('/chat')}
+                className="w-full rounded-lg bg-ui_10 py-4 font-bold text-ui_01"
+              >
                 건너뛰기
               </button>
               <button

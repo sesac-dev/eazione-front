@@ -21,7 +21,7 @@ const LoginRedirectPage = () => {
       if (isNew) {
         navigate('/signup');
       } else {
-        navigate('/');
+        navigate('/chat');
       }
     }
   }, [data]);
