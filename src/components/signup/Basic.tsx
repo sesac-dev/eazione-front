@@ -1,12 +1,14 @@
 import Header from '../@common/Header';
 import { icons } from '@/constants/icons';
 import useSaveImageFile from '@/hooks/@common/useSaveImageFile';
+import useSignature from '@/hooks/@common/useSignature';
 import { useNavigate } from 'react-router-dom';
+import SignatureCanvas from 'react-signature-canvas';
 
 const Basic = () => {
   const navigate = useNavigate();
   const { imgRef, previewImg, saveImgFiles } = useSaveImageFile();
-
+  const { signatureRef, clearSignatureHandler } = useSignature();
   return (
     <>
       <Header left={icons.BACK} left_func={() => navigate(-1)} />
@@ -36,7 +38,6 @@ const Basic = () => {
                 placeholder="First digit of alien registration number"
               />
             </div>
-
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">주거 형태</p>
               <div className="flex gap-5">
@@ -51,7 +52,6 @@ const Basic = () => {
                 <p className="w-10">만원</p>
               </div>
             </div>
-
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">근무처명</p>
               <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Current Workplace" />
@@ -75,33 +75,41 @@ const Basic = () => {
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">증명사진 업로드</p>
               <p className="text-tine_06">3.5cm x 4.5cm 크기의 컬러사진, 최근 6개월 이내 촬영, 흰색 배경</p>
-              <ul className="flex">
-                <li className="pr-4">
-                  <label
-                    className={`relative flex h-[170px] w-[132px] items-center justify-center rounded-lg ${previewImg ? 'border border-ui_11' : 'bg-ui_11'}`}
-                    htmlFor="photos"
-                  >
-                    {previewImg && (
-                      <img src={previewImg} className="absolute z-10 h-full w-full rounded-lg object-contain"></img>
-                    )}
-                    <input
-                      name="photos"
-                      onChange={saveImgFiles}
-                      ref={imgRef}
-                      multiple
-                      type="file"
-                      accept="image/*"
-                      id="photos"
-                      className="hidden h-full w-full cursor-pointer"
-                    ></input>
-                    <div className="flex flex-col items-center justify-center gap-2">
-                      {icons.PLUS}
-                      <p className="text-ui_05">사진 첨부하기</p>
-                    </div>
-                  </label>
-                </li>
-                <div className="flex gap-3 overflow-x-auto whitespace-nowrap"></div>
-              </ul>
+              <label
+                className={`relative flex h-[170px] w-[132px] items-center justify-center rounded-lg ${previewImg ? 'border border-ui_11' : 'bg-ui_11'}`}
+                htmlFor="photos"
+              >
+                <input
+                  name="photos"
+                  onChange={saveImgFiles}
+                  ref={imgRef}
+                  multiple
+                  type="file"
+                  accept="image/*"
+                  id="photos"
+                  className="hidden h-full w-full cursor-pointer"
+                ></input>
+                {previewImg ? (
+                  <img src={previewImg} className="absolute z-10 h-full w-full rounded-lg object-contain"></img>
+                ) : (
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    {icons.PLUS}
+                    <p className="text-ui_05">사진 첨부하기</p>
+                  </div>
+                )}
+              </label>
+            </div>
+            <div className="flex w-full flex-col gap-3">
+              <p className="text-ui_06">서명</p>
+              <div className="rounded-lg border">
+                <SignatureCanvas
+                  ref={signatureRef}
+                  canvasProps={{
+                    className: 'w-full h-full',
+                  }}
+                />
+              </div>
+              <button onClick={() => clearSignatureHandler()}>다시 그리기</button>
             </div>
 
             <div className="flex gap-5 pb-5 pt-7">

@@ -7,3 +7,8 @@ export const dataURLtoFile = (dataUrl: string) => {
   }
   return new Blob([new Uint8Array(array)], { type: 'image/png' });
 };
+
+// const decodedURL = dataUrl.replace(/^data:image\/\w+;base64,/, '');
+// const buf = Buffer.from(decodedURL, 'base64');
+// const blob = new Blob([buf], { type: 'image/png' });
+// return new File([blob], `${name}.png`, { type: 'image/png' });
