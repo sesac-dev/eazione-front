@@ -36,9 +36,7 @@ const TranslationPage = () => {
                 <br /> 입력 예시 문항을 표기해 줍니다.
               </p>
             </div>
-            <div className="flex w-full justify-center">
-              <img src={translationInfo} />
-            </div>
+            <img src={translationInfo} className="m-auto h-48 w-64" />
             <div className="flex w-full flex-col gap-5">
               <button
                 onClick={() => navigate('/preparing/shooting')}

@@ -4,7 +4,7 @@ const ChatInfo = () => {
   return (
     <>
       <div className="flex items-center justify-center py-10">
-        <img src={logo}></img>
+        <img src={logo} className="h-28 w-56"></img>
       </div>
       <h1 className="text-xl font-bold">EZ ONE에게 이렇게 질문해 보세요.</h1>
       <div className="flex flex-col gap-5 px-5 text-sm font-bold">

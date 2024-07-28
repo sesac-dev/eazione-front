@@ -21,9 +21,7 @@ const PreparingSignUp = () => {
               원활한 맞춤 서류 작성을 위해 고객님의 실명을 확인할 수 있는 신분증이 필요해요.
             </p>
           </div>
-          <div className="flex w-full justify-center">
-            <img src={preparingSignup} />
-          </div>
+          <img src={preparingSignup} className="m-auto h-36 w-[275px]" />
           <div className="flex w-full flex-col gap-5">
             <button
               onClick={() => {

@@ -22,9 +22,7 @@ const PreparingShooting = () => {
                 <br /> 서류 사진이 필요해요.
               </p>
             </div>
-            <div className="flex w-full justify-center">
-              <img src={preparingShootingInfo} />
-            </div>
+            <img src={preparingShootingInfo} className="m-auto h-[364px] w-[245px]" />
           </div>
         </div>
         <div className="fixed bottom-5 w-full max-w-[410px] px-5">
