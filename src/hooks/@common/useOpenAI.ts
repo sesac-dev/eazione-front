@@ -56,13 +56,13 @@ const useOpenAI = (initValue: () => void) => {
         target: 'GPT',
         content: '서류 촬영',
         type: 'BUTTON',
-        clickEventHandler: () => navigate('/translation'),
+        clickEventHandler: () => navigate('/shooting'),
       },
       {
         target: 'GPT',
         content: '서류 작성',
         type: 'BUTTON',
-        clickEventHandler: () => navigate('/translation'),
+        clickEventHandler: () => navigate('/autocomplete'),
       },
     ]);
   };
