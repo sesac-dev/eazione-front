@@ -12,7 +12,7 @@ import arabic_docs from '@/assets/arabic_docs.png';
 import DocsSaveModal from '@/components/translation/DocsSaveModal';
 import Loading from '@/components/@common/Loading';
 import arabic_answer from '@/assets/arabic_answer.png';
-import Toast from '@/components/@common/Toast/Toast';
+// import Toast from '@/components/@common/Toast/Toast';
 
 const AutocompletePage = () => {
   const navigate = useNavigate();
