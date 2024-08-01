@@ -6,7 +6,7 @@ export const dataURLtoFile = (dataUrl: string, name: string) => {
     array.push(blobBin.charCodeAt(i));
   }
   const blob = new Blob([new Uint8Array(array)], { type: 'image/png' });
-  console.log(blob);
+  console.log(name);
   return blob;
 };
 
