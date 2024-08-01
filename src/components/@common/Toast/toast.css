@@ -1,0 +1,26 @@
+.Toastify__toast {
+  position: fixed;
+  bottom: 100px;
+  left: 0px;
+  right: 0px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  margin: 0 20px;
+  padding: 16px 0px;
+  height: auto;
+  font-size: 16px;
+}
+
+.Toastify__toast--info {
+  background-color: rgb(0 0 0 / 0.56);
+}
+
+.Toastify__toast--success {
+  background-color: #f6f9ff;
+  color: #3273ff;
+}
+
+.Toastify__toast--error {
+  background-color: rgb(255, 114, 114);
+}

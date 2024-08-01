@@ -10,6 +10,9 @@ import japan_docs from '@/assets/japan_docs.png';
 import chinese_docs from '@/assets/chinese_docs.png';
 import arabic_docs from '@/assets/arabic_docs.png';
 import DocsSaveModal from '@/components/translation/DocsSaveModal';
+import Loading from '@/components/@common/Loading';
+import arabic_answer from '@/assets/arabic_answer.png';
+import Toast from '@/components/@common/Toast/Toast';
 
 const AutocompletePage = () => {
   const navigate = useNavigate();
@@ -37,6 +40,17 @@ const AutocompletePage = () => {
     console.log(selected);
   }, [selected]);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const autoCompleteHandler = () => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setDocsImg(arabic_answer);
+      // Toast.info('입력하신 파일명으로 저장되었습니다.');
+    }, 5000);
+  };
+
   return (
     <>
       {isModalOpen && (
@@ -49,6 +63,7 @@ const AutocompletePage = () => {
           </div>
         </div>
       )}
+      {isLoading && <Loading />}
       {isSaveModalOpen && <DocsSaveModal closeHandler={() => setIsSaveModalOpen(false)} docsImg={docsImg} />}
       <div className="h-screen w-full max-w-[410px]">
         <Header left={icons.BACK} left_func={() => navigate(-1)} center="자동 완성" />
@@ -57,7 +72,7 @@ const AutocompletePage = () => {
             <TranslationComboBox selected={selected} setSelected={setSelected} />
             <div
               onClick={() => setIsSaveModalOpen(true)}
-              className="flex flex-col items-center justify-center gap-1 text-sm text-ui_05"
+              className="flex flex-col items-center justify-center gap-1 text-sm text-ui_01"
             >
               {icons.SAVE}
               <p>저장하기</p>
@@ -70,7 +85,12 @@ const AutocompletePage = () => {
               className={`h-full w-full rounded-lg object-cover`}
             />
           </div>
-          <button className="mb-5 mt-10 w-full rounded-lg bg-primary py-4 font-bold text-white">자동 완성</button>
+          <button
+            onClick={() => autoCompleteHandler()}
+            className="mb-5 mt-10 w-full rounded-lg bg-primary py-4 font-bold text-white"
+          >
+            자동 완성
+          </button>
         </div>
       </div>
     </>
