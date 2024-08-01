@@ -10,3 +10,11 @@ export const postDocsOCR = async (docsType: string, docs: FormData): Promise<API
   console.log(data);
   return data;
 };
+
+/* 사용자 추가 정보 입력 */
+export const postUserAddInfo = async (info: FormData): Promise<APIResponse<string>> => {
+  const { data } = await multipartInstance.post(`/members/add-info`, info);
+
+  console.log(data);
+  return data;
+};

@@ -1,4 +1,4 @@
-import { IIdentityCard, IMember, IPassport } from '.';
+import { IBasicMember, IIdentityCard, IMember, IPassport } from '.';
 
 interface IPassportWithMember extends IPassport {
   member: IMember;
@@ -9,3 +9,7 @@ interface IIdentityCardWithMember extends IIdentityCard {
 
 // Union type 정의
 export type docsOCRResType = IPassportWithMember | IIdentityCardWithMember;
+
+export interface IBasicInfoReq {
+  info: IBasicMember;
+}

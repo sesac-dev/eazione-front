@@ -1,4 +1,3 @@
-import { dataURLtoFile } from '@/utils/dataURLtoFile';
 import { useRef, useState } from 'react';
 
 const useSignature = () => {
@@ -12,13 +11,12 @@ const useSignature = () => {
     setIsPlaceHolder(true);
   };
 
-  const saveSignatureHandler = () => {
+  const saveSignatureHandler = (): string => {
     if (signatureRef.current) {
       const image = signatureRef.current.getTrimmedCanvas().toDataURL('image/png');
-
-      console.log(image);
-      return dataURLtoFile(image, 'signature');
+      return image;
     }
+    return '';
   };
 
   const beginSignatureHandler = () => {

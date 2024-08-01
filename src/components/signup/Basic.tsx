@@ -4,15 +4,57 @@ import useSaveImageFile from '@/hooks/@common/useSaveImageFile';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignatureBottomSheet from './SignatureBottomSheet';
+import useInput from '@/hooks/@common/useInput';
+import { IBasicMember, IFamily } from '@/types';
+import { useSignup } from '@/hooks/signup/useSignup';
+import { dataURLtoFile } from '@/utils/dataURLtoFile';
 
 const Basic = () => {
   const navigate = useNavigate();
-  const { imgRef, previewImg, saveImgFiles } = useSaveImageFile();
+  const { imgRef, previewImg, saveImgFiles, postImg } = useSaveImageFile();
+  const [signatureImg, setSignatureImg] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [values, changer] = useInput<IBasicMember>({
+    income: 0,
+    phoneNumber: '',
+    email: '',
+    familyMember: [{ name: '', relationship: '', residence: '' }],
+    housingType: '',
+    currentWorkplace: '',
+    currentWorkplaceRegistrationNumber: '',
+    workplacePhoneNumber: '',
+  });
+
+  const [family, familyChanger] = useInput<IFamily>({ name: '', relationship: '', residence: '' });
+
+  const { usePostUserAddInfo } = useSignup();
+  const { mutate } = usePostUserAddInfo();
+
+  const postAddInfoHandler = () => {
+    const formData = new FormData();
+    const json = JSON.stringify({
+      ...values,
+      familyMember: [family],
+    });
+
+    const blob = new Blob([json], { type: 'application/json' });
+
+    formData.append('info', blob);
+    formData.append('img', postImg!);
+    formData.append('signature', dataURLtoFile(signatureImg, 'signature'));
+
+    mutate(formData);
+  };
 
   return (
     <>
-      {isOpen && <SignatureBottomSheet closeEvent={() => setIsOpen(false)} />}
+      {isOpen && (
+        <SignatureBottomSheet
+          closeEvent={() => setIsOpen(false)}
+          setSignatureImg={setSignatureImg}
+          postAddInfoHandler={postAddInfoHandler}
+        />
+      )}
       <Header left={icons.BACK} left_func={() => navigate(-1)} />
       <div className="h-full w-full px-5 pt-12">
         <div className="flex h-full w-full flex-col gap-10">
@@ -25,42 +67,105 @@ const Basic = () => {
           <div className="flex h-full flex-col gap-5 overflow-y-scroll text-sm">
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">휴대폰 번호</p>
-              <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Phone Number" />
+              <input
+                value={values.phoneNumber}
+                name="phoneNumber"
+                onChange={changer}
+                type="text"
+                className="w-full border-b px-1 pb-1 outline-none"
+                placeholder="Phone Number"
+              />
             </div>
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">이메일 주소</p>
-              <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="E-mail Address" />
-            </div>
-
-            <div className="flex w-full flex-col gap-3">
-              <p className="text-ui_06">가족 구성원</p>
               <input
+                value={values.email}
+                name="email"
+                onChange={changer}
                 type="text"
                 className="w-full border-b px-1 pb-1 outline-none"
-                placeholder="First digit of alien registration number"
+                placeholder="E-mail Address"
               />
+            </div>
+            <div className="flex w-full flex-col gap-3">
+              <p className="text-ui_06">가족 구성원</p>
+              <div className="flex items-start gap-3">
+                <div className="h-7 w-7">{icons.PLUS}</div>
+                <div className="flex w-full flex-col gap-3">
+                  <div className="flex w-full flex-col gap-3">
+                    <input
+                      value={family.name}
+                      name="name"
+                      onChange={familyChanger}
+                      type="text"
+                      className="w-full border-b px-1 pb-1 outline-none"
+                      placeholder="Family member"
+                    />
+                    <input
+                      value={family.relationship}
+                      name="relationship"
+                      onChange={familyChanger}
+                      type="text"
+                      className="w-full border-b px-1 pb-1 outline-none"
+                      placeholder="Relationship"
+                    />
+                    <input
+                      value={family.residence}
+                      name="residence"
+                      onChange={familyChanger}
+                      type="text"
+                      className="w-full border-b px-1 pb-1 outline-none"
+                      placeholder="Residence"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">주거 형태</p>
               <div className="flex gap-5">
-                <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Housing Type" />
+                <input
+                  value={values.housingType}
+                  name="housingType"
+                  onChange={changer}
+                  type="text"
+                  className="w-full border-b px-1 pb-1 outline-none"
+                  placeholder="Housing Type"
+                />
                 <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Other than" />
               </div>
             </div>
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">연소득</p>
               <div className="flex border-b pb-1">
-                <input type="text" className="w-full px-1 outline-none" placeholder="Annual income" />
+                <input
+                  value={values.income}
+                  name="income"
+                  onChange={changer}
+                  type="text"
+                  className="w-full px-1 outline-none"
+                  placeholder="Annual income"
+                />
                 <p className="w-10">만원</p>
               </div>
             </div>
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">근무처명</p>
-              <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Current Workplace" />
+              <input
+                value={values.currentWorkplace}
+                name="currentWorkplace"
+                onChange={changer}
+                type="text"
+                className="w-full border-b px-1 pb-1 outline-none"
+                placeholder="Current Workplace"
+              />
             </div>
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">근무처 사업자등록번호</p>
               <input
+                value={values.currentWorkplaceRegistrationNumber}
+                name="currentWorkplaceRegistrationNumber"
+                onChange={changer}
                 type="text"
                 className="w-full border-b px-1 pb-1 outline-none"
                 placeholder="Current Workplace Registration Number"
@@ -69,6 +174,9 @@ const Basic = () => {
             <div className="flex w-full flex-col gap-3">
               <p className="text-ui_06">근무처 전화번호</p>
               <input
+                value={values.workplacePhoneNumber}
+                name="workplacePhoneNumber"
+                onChange={changer}
                 type="text"
                 className="w-full border-b px-1 pb-1 outline-none"
                 placeholder="Workplace phone number"

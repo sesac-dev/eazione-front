@@ -1,12 +1,27 @@
 import useSignature from '@/hooks/@common/useSignature';
 import BottomSheet from '../@common/BottomSheet';
 import { icons } from '@/constants/icons';
-import { useNavigate } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
+import { Dispatch, SetStateAction } from 'react';
 
-const SignatureBottomSheet = ({ closeEvent }: { closeEvent: () => void }) => {
-  const navigate = useNavigate();
-  const { isPlaceHolder, signatureRef, clearSignatureHandler, beginSignatureHandler } = useSignature();
+const SignatureBottomSheet = ({
+  closeEvent,
+  setSignatureImg,
+  postAddInfoHandler,
+}: {
+  closeEvent: () => void;
+  setSignatureImg: Dispatch<SetStateAction<string>>;
+  postAddInfoHandler: () => void;
+}) => {
+  const { isPlaceHolder, signatureRef, clearSignatureHandler, beginSignatureHandler, saveSignatureHandler } =
+    useSignature();
+
+  const registerHandler = () => {
+    const saveImage = saveSignatureHandler();
+
+    setSignatureImg(saveImage);
+    postAddInfoHandler();
+  };
 
   return (
     <>
@@ -40,10 +55,7 @@ const SignatureBottomSheet = ({ closeEvent }: { closeEvent: () => void }) => {
             <button onClick={closeEvent} className="w-full rounded-lg bg-ui_10 py-4 font-bold text-ui_01">
               이전
             </button>
-            <button
-              onClick={() => navigate('/signup/preparing')}
-              className="w-full rounded-lg bg-primary py-4 font-bold text-white"
-            >
+            <button onClick={registerHandler} className="w-full rounded-lg bg-primary py-4 font-bold text-white">
               등록하기
             </button>
           </div>

@@ -39,3 +39,20 @@ export interface IMember {
   housingType: string | null;
   phoneNumber: string | null;
 }
+
+export interface IBasicMember {
+  income: number;
+  phoneNumber: string;
+  email: string;
+  familyMember: IFamily[];
+  housingType: string;
+  currentWorkplace: string;
+  currentWorkplaceRegistrationNumber: string;
+  workplacePhoneNumber: string;
+}
+
+export interface IFamily {
+  name: string;
+  relationship: string;
+  residence: string;
+}
