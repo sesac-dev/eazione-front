@@ -1,10 +1,32 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import useInput from '@/hooks/@common/useInput';
+import { IPassport } from '@/types';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Passport = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [date, setDate] = useState<string>('');
+  const [values, changer] = useInput<IPassport>({
+    countryOfIssue: location.state.data.countryOfIssue,
+    dateOfBirth: location.state.data.dateOfBirth,
+    dateOfIssue: location.state.data.dateOfIssue,
+    expiryOfDate: location.state.data.expiryOfDate,
+    givenName: location.state.data.givenName,
+    issuingAuthority: location.state.data.issuingAuthority,
+    nationality: location.state.data.nationality,
+    passportNumber: location.state.data.passportNumber,
+    sex: location.state.data.sex,
+    surName: location.state.data.surName,
+    type: location.state.data.type,
+  });
+
+  useEffect(() => {
+    if (location.state.data) {
+      console.log(location.state.data);
+    }
+  }, []);
 
   return (
     <>
@@ -16,40 +38,81 @@ const Passport = () => {
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">이름</p>
           <div className="flex gap-5">
-            <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Surname"></input>
-            <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Given Names"></input>
+            <input
+              value={values.surName}
+              onChange={changer}
+              name="sureName"
+              type="text"
+              className="w-full border-b px-1 pb-1 outline-none"
+              placeholder="Surname"
+            ></input>
+            <input
+              value={values.givenName}
+              onChange={changer}
+              name="givenNames"
+              type="text"
+              className="w-full border-b px-1 pb-1 outline-none"
+              placeholder="Given Names"
+            ></input>
           </div>
         </div>
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">생년월일</p>
-          <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Date of Birth"></input>
+          <input
+            value={values.dateOfBirth}
+            onChange={changer}
+            name="dateOfBirth"
+            type="text"
+            className="w-full border-b px-1 pb-1 outline-none"
+            placeholder="Date of Birth"
+          ></input>
         </div>
         <div className="flex gap-10">
           <div className="flex w-full flex-col gap-3">
             <p className="text-ui_06">성별</p>
-            <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Sex"></input>
+            <input
+              value={values.sex}
+              type="text"
+              className="w-full border-b px-1 pb-1 outline-none"
+              placeholder="Sex"
+            ></input>
           </div>
           <div className="flex w-full flex-col gap-3">
             <p className="text-ui_06">국적</p>
-            <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Nationality"></input>
+            <input
+              value={values.nationality}
+              onChange={changer}
+              name="nationality"
+              type="text"
+              className="w-full border-b px-1 pb-1 outline-none"
+              placeholder="Nationality"
+            ></input>
           </div>
         </div>
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">여권 만료일</p>
           <div className="flex">
-            <p className="flex-1 border-b px-1 pb-1 text-ui_06">{date ? date : 'Date of Issue'}</p>
+            <p className="flex-1 border-b px-1 pb-1">{values.dateOfIssue ? values.dateOfIssue : 'Date of Issue'}</p>
             <input
+              value={values.dateOfIssue}
+              onChange={changer}
+              name="dateOfIssue"
               type="date"
               required
-              value={date}
-              onChange={e => setDate(e.target.value)}
               className="border-b px-1 pb-1 outline-none"
             ></input>
           </div>
         </div>
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">여권 발급국</p>
-          <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Country of Issue"></input>
+          <input
+            value={values.issuingAuthority}
+            onChange={changer}
+            name="issuingAuthority"
+            type="text"
+            className="w-full border-b px-1 pb-1 outline-none"
+            placeholder="IssuingAuthority"
+          ></input>
         </div>
         <div className="flex gap-5 pb-5 pt-7">
           <button

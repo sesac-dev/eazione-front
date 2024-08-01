@@ -46,6 +46,7 @@ const ShootingPassport = () => {
     // dataURLtoFile(image, 'passport')
     formData.append('img', file);
 
+    !docsType && setDocsType('passport');
     postDocsOCR({ docsType, docs: formData });
 
     setTimeout(() => {
@@ -59,7 +60,9 @@ const ShootingPassport = () => {
         ? setDocsType('foreginerback')
         : docsType === 'foreginerback'
           ? navigate('/signup/register/foreigner')
-          : navigate('/signup/register/passport');
+          : navigate('/signup/register/passport', {
+              state: data,
+            });
     }
   }, [isPending, data]);
 

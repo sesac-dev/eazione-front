@@ -6,8 +6,8 @@ export interface APIResponse<T> {
 
 export interface IPassport {
   passportNumber: string; // 여권 번호
-  sureName: string; // 성
-  givenNames: string; // 이름
+  surName: string; // 성
+  givenName: string; // 이름
   dateOfBirth: string; // 생년월일
   sex: string; // 성별
   nationality: string; // 국적
