@@ -17,7 +17,7 @@ const useSignature = () => {
       const image = signatureRef.current.getTrimmedCanvas().toDataURL('image/png');
 
       console.log(image);
-      return dataURLtoFile(image);
+      return dataURLtoFile(image, 'signature');
     }
   };
 

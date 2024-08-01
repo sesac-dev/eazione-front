@@ -38,7 +38,7 @@ const ShootingPassport = () => {
 
     const formData = new FormData();
     const image = getCanvasImage()!;
-    formData.append('img', dataURLtoFile(image));
+    formData.append('img', dataURLtoFile(image, 'passport'));
 
     postDocsOCR({ docsType, docs: formData });
 

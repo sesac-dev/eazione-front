@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Header from '@/components/@common/Header';
 import { icons } from '@/constants/icons';
 import { useCapture } from '@/hooks/@common/useCapture';
-import { dataURLtoFile } from '@/utils/dataURLtoFile';
 
 const ShootingPage = () => {
   const navigate = useNavigate();
@@ -41,13 +40,7 @@ const ShootingPage = () => {
 
   useEffect(() => {
     if (image) {
-      navigate('/autocomplete', {
-        state: {
-          previewImg: image,
-          postImg: dataURLtoFile(image),
-          prev: 'shooting',
-        },
-      });
+      navigate('/autocomplete');
     }
   }, [image]);
 
