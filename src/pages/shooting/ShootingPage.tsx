@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '@/components/@common/Header';
 import { icons } from '@/constants/icons';
 import { useCapture } from '@/hooks/@common/useCapture';
+import Loading from '@/components/@common/Loading';
 
 const ShootingPage = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const ShootingPage = () => {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const { videoRef, setCanvas, setDiv, getCanvasImage } = useCapture();
   const [image, setImage] = useState<string>('');
+
   const getMediaPermission = useCallback(async () => {
     try {
       // const video = { audio: true, video: true };
@@ -32,15 +34,14 @@ const ShootingPage = () => {
 
     setImage(canvasImage!);
     setCaptured(true);
-
-    setTimeout(() => {
-      setCaptured(false);
-    }, 250);
   };
 
   useEffect(() => {
     if (image) {
-      navigate('/autocomplete');
+      setTimeout(() => {
+        setCaptured(false);
+        navigate('/autocomplete');
+      }, 1500);
     }
   }, [image]);
 
@@ -60,6 +61,7 @@ const ShootingPage = () => {
 
   return (
     <>
+      {captured && <Loading />}
       <div className={`relative h-full w-full text-white ${captured && 'animate-captureEnter'}`}>
         <video ref={videoRef} className="h-full w-full object-cover" autoPlay playsInline muted />
         <Header left={icons.WHITE_BACK} left_func={() => navigate(-1)} />
