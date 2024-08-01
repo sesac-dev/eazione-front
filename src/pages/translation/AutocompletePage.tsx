@@ -11,7 +11,6 @@ import chinese_docs from '@/assets/chinese_docs.png';
 import arabic_docs from '@/assets/arabic_docs.png';
 import DocsSaveModal from '@/components/translation/DocsSaveModal';
 import Loading from '@/components/@common/Loading';
-import arabic_answer from '@/assets/arabic_answer.png';
 import { useDocs } from '@/hooks/docs/useDocs';
 // import Toast from '@/components/@common/Toast/Toast';
 
@@ -56,11 +55,6 @@ const AutocompletePage = () => {
     formData.append('img', file);
 
     mutate(formData);
-    // setTimeout(() => {
-    //   setIsLoading(false);
-    //   // setDocsImg(arabic_answer);
-    //   // Toast.info('입력하신 파일명으로 저장되었습니다.');
-    // }, 5000);
   };
 
   useEffect(() => {
