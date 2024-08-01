@@ -35,6 +35,7 @@ const ShootingPassport = () => {
 
   const [captured, setCaptured] = useState<boolean>(false);
   const captureImage = async () => {
+    !docsType && setDocsType('passport');
     setCaptured(true);
 
     const response = await fetch(passport);
@@ -46,7 +47,6 @@ const ShootingPassport = () => {
     // dataURLtoFile(image, 'passport')
     formData.append('img', file);
 
-    !docsType && setDocsType('passport');
     postDocsOCR({ docsType, docs: formData });
 
     setTimeout(() => {

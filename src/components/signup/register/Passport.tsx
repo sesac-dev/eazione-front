@@ -8,24 +8,18 @@ const Passport = () => {
   const location = useLocation();
 
   const [values, changer] = useInput<IPassport>({
-    countryOfIssue: location.state.data.countryOfIssue,
-    dateOfBirth: location.state.data.dateOfBirth,
-    dateOfIssue: location.state.data.dateOfIssue,
-    expiryOfDate: location.state.data.expiryOfDate,
-    givenName: location.state.data.givenName,
-    issuingAuthority: location.state.data.issuingAuthority,
-    nationality: location.state.data.nationality,
-    passportNumber: location.state.data.passportNumber,
-    sex: location.state.data.sex,
-    surName: location.state.data.surName,
-    type: location.state.data.type,
+    countryOfIssue: location.state ? location.state.data.countryOfIssue : '',
+    dateOfBirth: location.state ? location.state.data.dateOfBirth : '',
+    dateOfIssue: location.state ? location.state.data.dateOfIssue : '',
+    expiryOfDate: location.state ? location.state.data.expiryOfDate : '',
+    givenName: location.state ? location.state.data.givenName : '',
+    issuingAuthority: location.state ? location.state.data.issuingAuthority : '',
+    nationality: location.state ? location.state.data.nationality : '',
+    passportNumber: location.state ? location.state.data.passportNumber : '',
+    sex: location.state ? location.state.data.sex : '',
+    surName: location.state ? location.state.data.surName : '',
+    type: location.state ? location.state.data.type : '',
   });
-
-  useEffect(() => {
-    if (location.state.data) {
-      console.log(location.state.data);
-    }
-  }, []);
 
   return (
     <>
@@ -71,6 +65,7 @@ const Passport = () => {
             <p className="text-ui_06">성별</p>
             <input
               value={values.sex}
+              onChange={changer}
               type="text"
               className="w-full border-b px-1 pb-1 outline-none"
               placeholder="Sex"
