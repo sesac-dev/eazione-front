@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/@common/Header';
 import { icons } from '@/constants/icons';
 import { useSignup } from '@/hooks/signup/useSignup';
@@ -12,6 +12,7 @@ import passport from '@/assets/passport.png';
 
 const ShootingPassport = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { docsType, setDocsType } = useOutletContext<ISignUpState>();
   const [stream, setStream] = useState<MediaStream | null>(null);
   const { videoRef, setCanvas, setDiv } = useCapture();
@@ -35,7 +36,6 @@ const ShootingPassport = () => {
 
   const [captured, setCaptured] = useState<boolean>(false);
   const captureImage = async () => {
-    !docsType && setDocsType('passport');
     setCaptured(true);
 
     const response = await fetch(passport);
@@ -59,12 +59,20 @@ const ShootingPassport = () => {
       docsType === 'foreginerfront'
         ? setDocsType('foreginerback')
         : docsType === 'foreginerback'
-          ? navigate('/signup/register/foreigner')
+          ? navigate('/signup/register/foreigner', {
+              state: data,
+            })
           : navigate('/signup/register/passport', {
               state: data,
             });
     }
   }, [isPending, data]);
+
+  useEffect(() => {
+    if (!docsType) {
+      setDocsType(location.state.docsType);
+    }
+  }, [docsType]);
 
   useEffect(() => {
     // 아직 media stream이 설정되지 않았다면 호출

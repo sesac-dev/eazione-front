@@ -13,3 +13,11 @@ export type docsOCRResType = IPassportWithMember | IIdentityCardWithMember;
 export interface IBasicInfoReq {
   info: IBasicMember;
 }
+
+export interface IBasicInfoRes extends IMember {
+  currentWorkplace: string;
+  currentWorkplaceRegistrationNumber: string;
+  workplacePhoneNumber: string;
+  profile: string;
+  sign: string;
+}

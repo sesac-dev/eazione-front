@@ -19,16 +19,15 @@ export interface IPassport {
 }
 
 export interface IIdentityCard {
-  id: number;
-  number: string; // 외국인 등록번호
-  name: string; // 성명
-  county: string; // 국가&지역
-  status: string; // 체류 자격
+  foreignNumber: string;
+  name: string;
+  country: string;
+  status: string;
   issueDate: string;
-  startDateOfStay: string; // 허가 일자
-  endDateOfStay: string; // 만료 일자
-  address: string; // 체류지
-  reportDate: string; // 신고일
+  startDateOfStay: string;
+  endDateOfStay: string;
+  address: string;
+  reportDate: string;
 }
 
 export interface IMember {

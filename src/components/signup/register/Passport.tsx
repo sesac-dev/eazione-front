@@ -6,19 +6,23 @@ const Passport = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [values, changer] = useInput<IPassport>({
-    countryOfIssue: location.state ? location.state.data.countryOfIssue : '',
-    dateOfBirth: location.state ? location.state.data.dateOfBirth : '',
-    dateOfIssue: location.state ? location.state.data.dateOfIssue : '',
-    expiryOfDate: location.state ? location.state.data.expiryOfDate : '',
-    givenName: location.state ? location.state.data.givenName : '',
-    issuingAuthority: location.state ? location.state.data.issuingAuthority : '',
-    nationality: location.state ? location.state.data.nationality : '',
-    passportNumber: location.state ? location.state.data.passportNumber : '',
-    sex: location.state ? location.state.data.sex : '',
-    surName: location.state ? location.state.data.surName : '',
-    type: location.state ? location.state.data.type : '',
-  });
+  const [values, changer] = useInput<IPassport>(
+    {
+      countryOfIssue: !location.state.docsType ? location.state.data.countryOfIssue : '',
+      dateOfBirth: !location.state.docsType ? location.state.data.dateOfBirth : '',
+      dateOfIssue: !location.state.docsType ? location.state.data.dateOfIssue : '',
+      expiryOfDate: !location.state.docsType ? location.state.data.expiryOfDate : '',
+      givenName: !location.state.docsType ? location.state.data.givenName : '',
+      issuingAuthority: !location.state.docsType ? location.state.data.issuingAuthority : '',
+      nationality: !location.state.docsType ? location.state.data.nationality : '',
+      passportNumber: !location.state.docsType ? location.state.data.passportNumber : '',
+      sex: !location.state.docsType ? location.state.data.sex : '',
+      surName: !location.state.docsType ? location.state.data.surName : '',
+      type: !location.state.docsType ? location.state.data.type : '',
+    },
+    true,
+    'passport',
+  );
 
   return (
     <>
@@ -109,15 +113,18 @@ const Passport = () => {
         </div>
         <div className="flex gap-5 pb-5 pt-7">
           <button
-            onClick={() => navigate('/signup/shooting')}
+            onClick={() =>
+              navigate('/signup/shooting', {
+                state: {
+                  docsType: 'foreginerback',
+                },
+              })
+            }
             className="w-full rounded-lg bg-ui_10 py-4 font-bold text-ui_01"
           >
             다시 촬영하기
           </button>
-          <button
-            onClick={() => navigate('preparing')}
-            className="w-full rounded-lg bg-primary py-4 font-bold text-white"
-          >
+          <button onClick={() => navigate('/my')} className="w-full rounded-lg bg-primary py-4 font-bold text-white">
             인증완료
           </button>
         </div>

@@ -1,10 +1,26 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useInput from '@/hooks/@common/useInput';
+import { IIdentityCard } from '@/types';
 
 const ForeignerRegister = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [date, setDate] = useState<string>('');
+  const [values, changer] = useInput<IIdentityCard>(
+    {
+      foreignNumber: !location.state.docsType ? location.state.data.foreignNumber : '',
+      name: !location.state.docsType ? location.state.data.name : '',
+      country: !location.state.docsType ? location.state.data.country : '',
+      status: !location.state.docsType ? location.state.data.status : '',
+      issueDate: !location.state.docsType ? location.state.data.issueDate : '',
+      startDateOfStay: !location.state.docsType ? location.state.data.startDateOfStay : '',
+      endDateOfStay: !location.state.docsType ? location.state.data.endDateOfStay : '',
+      address: !location.state.docsType ? location.state.data.address : '',
+      reportDate: !location.state.docsType ? location.state.data.reportDate : '',
+    },
+    true,
+    'idCard',
+  );
 
   return (
     <>
@@ -16,51 +32,59 @@ const ForeignerRegister = () => {
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">외국인 등록번호</p>
           <input
+            value={values.foreignNumber}
+            onChange={changer}
+            name="foreignNumber"
             type="text"
             className="w-full border-b px-1 pb-1 outline-none"
             placeholder="Alien Registration Number"
           ></input>
         </div>
-        <div className="flex w-full flex-col gap-3">
-          <p className="text-ui_06">생년월일</p>
-          <input
-            type="text"
-            className="w-full border-b px-1 pb-1 outline-none"
-            placeholder="First 6 digits of alien registration number"
-          ></input>
-        </div>
-        <div className="flex w-full flex-col gap-3">
-          <p className="text-ui_06">성별</p>
-          <input
-            type="text"
-            className="w-full border-b px-1 pb-1 outline-none"
-            placeholder="First digit of alien registration number"
-          ></input>
-        </div>
+
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">성명</p>
-          <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Name"></input>
+          <input
+            value={values.name}
+            onChange={changer}
+            name="name"
+            type="text"
+            className="w-full border-b px-1 pb-1 outline-none"
+            placeholder="Name"
+          ></input>
         </div>
         <div className="flex w-full flex-col gap-3">
-          <p className="text-ui_06">국가/지역</p>
-          <div className="flex gap-5">
-            <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Country"></input>
-            <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Region"></input>
-          </div>
+          <p className="text-ui_06">국가</p>
+          <input
+            value={values.country}
+            onChange={changer}
+            name="country"
+            type="text"
+            className="w-full border-b px-1 pb-1 outline-none"
+            placeholder="Country"
+          ></input>
         </div>
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">체류 자격</p>
-          <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Status"></input>
+          <input
+            value={values.status}
+            onChange={changer}
+            name="status"
+            type="text"
+            className="w-full border-b px-1 pb-1 outline-none"
+            placeholder="Status"
+          ></input>
         </div>
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">허가일자</p>
           <div className="flex">
-            <p className="flex-1 border-b px-1 pb-1 text-ui_06">{date ? date : 'Permission date'}</p>
+            <p className="flex-1 border-b px-1 pb-1">
+              {values.startDateOfStay ? values.startDateOfStay : 'Permission date'}
+            </p>
             <input
+              value={values.startDateOfStay}
+              onChange={changer}
+              name="startDateOfStay"
               type="date"
-              required
-              value={date}
-              onChange={e => setDate(e.target.value)}
               className="border-b px-1 pb-1 outline-none"
             ></input>
           </div>
@@ -68,49 +92,57 @@ const ForeignerRegister = () => {
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">만료일자</p>
           <div className="flex">
-            <p className="flex-1 border-b px-1 pb-1 text-ui_06">{date ? date : 'Expiration date'}</p>
+            <p className="flex-1 border-b px-1 pb-1">
+              {values.endDateOfStay ? values.endDateOfStay : 'Expiration date'}
+            </p>
             <input
+              value={values.endDateOfStay}
+              onChange={changer}
+              name="endDateOfStay"
               type="date"
-              required
-              value={date}
-              onChange={e => setDate(e.target.value)}
               className="border-b px-1 pb-1 outline-none"
             ></input>
           </div>
         </div>
         <div className="flex w-full flex-col gap-3">
-          <p className="text-ui_06">확인</p>
-          <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="Region"></input>
-        </div>
-        <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">신고일</p>
           <div className="flex">
-            <p className="flex-1 border-b px-1 pb-1 text-ui_06">{date ? date : 'Report date'}</p>
+            <p className="flex-1 border-b px-1 pb-1">{values.reportDate ? values.reportDate : 'Report date'}</p>
             <input
+              value={values.reportDate}
+              onChange={changer}
+              name="reportDate"
               type="date"
-              required
-              value={date}
-              onChange={e => setDate(e.target.value)}
               className="border-b px-1 pb-1 outline-none"
             ></input>
           </div>
         </div>
         <div className="flex w-full flex-col gap-3">
           <p className="text-ui_06">체류지</p>
-          <input type="text" className="w-full border-b px-1 pb-1 outline-none" placeholder="address"></input>
+          <input
+            value={values.address}
+            onChange={changer}
+            name="address"
+            type="text"
+            className="w-full border-b px-1 pb-1 outline-none"
+            placeholder="address"
+          ></input>
         </div>
 
         <div className="flex gap-5 pb-5 pt-7">
           <button
-            onClick={() => navigate('/signup/shooting')}
+            onClick={() =>
+              navigate('/signup/shooting', {
+                state: {
+                  docsType: 'IdCard',
+                },
+              })
+            }
             className="w-full rounded-lg bg-ui_10 py-4 font-bold text-ui_01"
           >
             다시 촬영하기
           </button>
-          <button
-            onClick={() => navigate('preparing')}
-            className="w-full rounded-lg bg-primary py-4 font-bold text-white"
-          >
+          <button onClick={() => navigate('/my')} className="w-full rounded-lg bg-primary py-4 font-bold text-white">
             인증완료
           </button>
         </div>
