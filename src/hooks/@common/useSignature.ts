@@ -1,13 +1,15 @@
 import { dataURLtoFile } from '@/utils/dataURLtoFile';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const useSignature = () => {
+  const [isPlaceHolder, setIsPlaceHolder] = useState<boolean>(true);
   const signatureRef = useRef(null) as React.MutableRefObject<any>;
 
   const clearSignatureHandler = () => {
     if (signatureRef.current) {
       signatureRef.current.clear();
     }
+    setIsPlaceHolder(true);
   };
 
   const saveSignatureHandler = () => {
@@ -19,7 +21,11 @@ const useSignature = () => {
     }
   };
 
-  return { signatureRef, clearSignatureHandler, saveSignatureHandler };
+  const beginSignatureHandler = () => {
+    setIsPlaceHolder(false);
+  };
+
+  return { isPlaceHolder, signatureRef, clearSignatureHandler, saveSignatureHandler, beginSignatureHandler };
 };
 
 export default useSignature;

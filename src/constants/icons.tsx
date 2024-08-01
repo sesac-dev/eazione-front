@@ -18,6 +18,7 @@ import send from '@/assets/icons/send.png';
 import save from '@/assets/icons/save.png';
 import calendar from '@/assets/icons/calendar.png';
 import plus from '@/assets/icons/plus.png';
+import refresh from '@/assets/icons/refresh.png';
 
 export const icons: { [key: string]: ReactNode } = {
   DISABLE_CHAT: <img src={disable_chat} />,
@@ -38,6 +39,7 @@ export const icons: { [key: string]: ReactNode } = {
   SAVE: <img src={save}></img>,
   CALENDAR: <img src={calendar}></img>,
   PLUS: <img src={plus}></img>,
+  REFRESH: <img src={refresh}></img>,
 
   BACK: (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">

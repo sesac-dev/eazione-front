@@ -1,16 +1,18 @@
 import Header from '../@common/Header';
 import { icons } from '@/constants/icons';
 import useSaveImageFile from '@/hooks/@common/useSaveImageFile';
-import useSignature from '@/hooks/@common/useSignature';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SignatureCanvas from 'react-signature-canvas';
+import SignatureBottomSheet from './SignatureBottomSheet';
 
 const Basic = () => {
   const navigate = useNavigate();
   const { imgRef, previewImg, saveImgFiles } = useSaveImageFile();
-  const { signatureRef, clearSignatureHandler } = useSignature();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <>
+      {isOpen && <SignatureBottomSheet closeEvent={() => setIsOpen(false)} />}
       <Header left={icons.BACK} left_func={() => navigate(-1)} />
       <div className="h-full w-full px-5 pt-12">
         <div className="flex h-full w-full flex-col gap-10">
@@ -99,28 +101,16 @@ const Basic = () => {
                 )}
               </label>
             </div>
-            <div className="flex w-full flex-col gap-3">
-              <p className="text-ui_06">서명</p>
-              <div className="rounded-lg border">
-                <SignatureCanvas
-                  ref={signatureRef}
-                  canvasProps={{
-                    className: 'w-full h-full',
-                  }}
-                />
-              </div>
-              <button onClick={() => clearSignatureHandler()}>다시 그리기</button>
-            </div>
 
             <div className="flex gap-5 pb-5 pt-7">
               <button
                 onClick={() => navigate('/chat')}
                 className="w-full rounded-lg bg-ui_10 py-4 font-bold text-ui_01"
               >
-                건너뛰기
+                취소
               </button>
               <button
-                onClick={() => navigate('/signup/preparing')}
+                onClick={() => setIsOpen(true)}
                 className="w-full rounded-lg bg-primary py-4 font-bold text-white"
               >
                 다음
