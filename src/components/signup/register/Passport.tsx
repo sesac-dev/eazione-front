@@ -1,6 +1,5 @@
 import useInput from '@/hooks/@common/useInput';
 import { IPassport } from '@/types';
-import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Passport = () => {
