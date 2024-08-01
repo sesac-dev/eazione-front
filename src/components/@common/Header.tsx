@@ -10,7 +10,7 @@ interface IHeaderProp {
 
 const Header = ({ left, center, right, left_func, right_func }: IHeaderProp) => {
   return (
-    <header className="fixed top-0 z-50 flex h-12 w-full max-w-[410px] items-center justify-between px-5 text-center font-bold">
+    <header className="fixed top-0 z-40 flex h-12 w-full max-w-[410px] items-center justify-between px-5 text-center font-bold">
       {left ? (
         <div onClick={left_func} className="text-primary">
           {left}

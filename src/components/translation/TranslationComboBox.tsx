@@ -11,7 +11,7 @@ const TranslationComboBox = ({ selected, setSelected }: ITranslationProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="z-40 w-56 text-sm">
+    <div className="w-56 text-sm">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="flex h-12 items-center justify-between rounded-lg border border-[#E1E1E1] px-3"
