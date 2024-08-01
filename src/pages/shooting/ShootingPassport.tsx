@@ -74,7 +74,7 @@ const ShootingPassport = () => {
   return (
     <>
       <div className={`relative h-full w-full text-white ${captured && 'animate-captureEnter'}`}>
-        <video ref={videoRef} className="h-full w-full -scale-x-100 object-cover" autoPlay playsInline muted />
+        <video ref={videoRef} className="h-full w-full object-cover" autoPlay playsInline muted />
         <Header left={icons.WHITE_BACK} left_func={() => navigate(-1)} />
         {isPending && <Loading />}
         <div className="absolute left-0 top-0 h-full w-full px-5 pt-12">

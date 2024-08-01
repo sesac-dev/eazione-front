@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from '@/components/@common/Header';
 import { icons } from '@/constants/icons';
 import { ITranslation, translationLanguage } from '@/constants/translationLanguage';
@@ -12,7 +12,7 @@ import arabic_docs from '@/assets/arabic_docs.png';
 
 const AutocompletePage = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const [selected, setSelected] = useState<ITranslation>(translationLanguage[0]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -46,7 +46,7 @@ const AutocompletePage = () => {
             <img
               src={docsImg}
               // src={location.state.previewImg}
-              className={`h-full w-full rounded-lg object-contain ${location.state && location.state.prev === 'shooting' && '-scale-x-100'}`}
+              className={`h-full w-full rounded-lg object-contain`}
             />
           </div>
         </div>
@@ -66,7 +66,7 @@ const AutocompletePage = () => {
                 onClick={() => setIsModalOpen(true)}
                 // src={location.state.previewImg}
                 src={docsImg}
-                className={`h-full w-full rounded-lg object-cover ${location.state && location.state.prev === 'shooting' && '-scale-x-100'}`}
+                className={`h-full w-full rounded-lg object-cover`}
               />
             </div>
             <button className="mb-5 mt-10 w-full rounded-lg bg-primary py-4 font-bold text-white">자동 완성</button>
