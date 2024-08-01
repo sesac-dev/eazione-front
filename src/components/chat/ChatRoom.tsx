@@ -48,16 +48,11 @@ const ChatRoom = () => {
             )}
           </div>
         ))}
-        {!isLoading && (
+        {isLoading && (
           <div className="py-5">
             <img src={chatBot} className="mb-1"></img>
             <div className="relative flex w-full flex-col items-center justify-center gap-5">
               <Lottie {...chatLoadingOptions} className="absolute -bottom-28 w-44" />
-              {/* <div className="flex gap-10">
-                <div className="h-3 w-3 animate-bounce rounded-full bg-tint_03"></div>
-                <div className="h-3 w-3 animate-bounce rounded-full bg-tint_03"></div>
-                <div className="h-3 w-3 animate-bounce rounded-full bg-tint_03"></div>
-              </div> */}
               <p className="absolute -bottom-24 text-sm text-tint_04">답변을 작성중입니다</p>
             </div>
           </div>
