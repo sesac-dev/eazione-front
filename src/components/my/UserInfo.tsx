@@ -1,4 +1,4 @@
-import { icons } from '@/constants/icons';
+// import { icons } from '@/constants/icons';
 import { useUser } from '@/hooks/user/useUser';
 import userStore from '@/stores/userStore';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ const UserInfo = () => {
         <p className="text-[22px]">
           <span className="font-bold">{name}</span>님
         </p>
-        {icons.MY_RIGHT}
+        {/* {icons.MY_RIGHT} */}
       </div>
       <div className="flex flex-col gap-3 py-8">
         <p className="pb-2 text-left text-lg font-bold">등록한 신분증</p>

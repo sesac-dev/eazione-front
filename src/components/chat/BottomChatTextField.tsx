@@ -6,6 +6,7 @@ import useOpenAI from '@/hooks/@common/useOpenAI';
 import chatStore from '@/stores/chatStore';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { useNavigate } from 'react-router-dom';
+import './bubble.css';
 
 const BottomChatTextField = () => {
   const navigate = useNavigate();
