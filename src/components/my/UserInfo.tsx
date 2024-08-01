@@ -30,7 +30,7 @@ const UserInfo = () => {
         >
           <p>여권</p>
           <p className="text-[13px] text-ui_08">
-            {data?.data.isIdentityCard ? '등록된 여권이 있습니다' : `등록된 여권이 없습니다`}
+            {data && data?.data.isIdentityCard ? '등록된 여권이 있습니다' : `등록된 여권이 없습니다`}
           </p>
         </div>
         <div
@@ -45,7 +45,7 @@ const UserInfo = () => {
         >
           <p>외국인 등록증</p>
           <p className="text-[13px] text-ui_08">
-            {data?.data.isIdentityCard ? '등록된 외국인 등록증이 있습니다' : `등록된 외국인 등록증이 없습니다`}
+            {data && data?.data.isIdentityCard ? '등록된 외국인 등록증이 있습니다' : `등록된 외국인 등록증이 없습니다`}
           </p>
         </div>
       </div>
@@ -54,7 +54,9 @@ const UserInfo = () => {
         <div onClick={() => navigate('docs')} className="flex items-center gap-5 rounded-lg bg-ui_12 p-3">
           <p>저장한 문서</p>
           <p className="text-[13px] text-ui_08">
-            {data?.data.nomalDocsCnt === 0 ? '저장된 문서가 없습니다' : `${data?.data.nomalDocsCnt}개`}
+            {!data?.data.nomalDocsCnt || data?.data.nomalDocsCnt === 0
+              ? '저장된 문서가 없습니다'
+              : `${data?.data.nomalDocsCnt}개`}
           </p>
         </div>
       </div>

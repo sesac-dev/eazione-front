@@ -1,4 +1,4 @@
-import { getDocsList, postSaveDocs } from '@/services/docs/api';
+import { getDocsList, postAutoTranslationDocs, postSaveDocs } from '@/services/docs/api';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const useDocs = () => {
@@ -16,8 +16,16 @@ export const useDocs = () => {
     });
   };
 
+  const usePostAutoTranslationDocs = () => {
+    return useMutation({
+      mutationKey: ['my', 'save', 'docs'],
+      mutationFn: (docs: FormData) => postAutoTranslationDocs('nation', docs),
+    });
+  };
+
   return {
     useGetDocsList,
     usePostSaveDocs,
+    usePostAutoTranslationDocs,
   };
 };

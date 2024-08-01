@@ -10,8 +10,5 @@ export const translationLanguage: ITranslation[] = [
   { id: 3, language: '日本語' },
   { id: 4, language: '中国人' },
   { id: 5, language: 'čeština' },
-  { id: 6, language: 'basa jawa' },
-  { id: 7, language: 'gálata' },
-  { id: 8, language: 'latin' },
-  { id: 9, language: 'Tiếng Việt' },
+  { id: 6, language: 'spanish' },
 ];

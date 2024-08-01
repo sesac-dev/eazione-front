@@ -17,3 +17,11 @@ export const postSaveDocs = async (docs: FormData): Promise<APIResponse<IDocsRes
   console.log(data);
   return data;
 };
+
+/* 서류 자동 완상 */
+export const postAutoTranslationDocs = async (nation: string, docs: FormData): Promise<APIResponse<string>> => {
+  const { data } = await multipartInstance.post(`/docs/auto/translation/${nation}`, docs);
+
+  console.log(data);
+  return data;
+};
