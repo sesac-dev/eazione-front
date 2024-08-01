@@ -25,13 +25,13 @@ export default {
         ui_12: '#F8F8F8',
       },
       keyframes: {
-        captureOn: {
+        fadeIn: {
           from: { opacity: 0 },
           to: { opacity: 1 },
         },
-        captureOff: {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
         },
         sheetOn: {
           from: { opacity: 0, transform: 'translateY(384px)' },
@@ -44,8 +44,10 @@ export default {
       },
     },
     animation: {
-      captureEnter: 'captureOn 0.3s ease-in-out',
-      captureExit: 'captureOff 0.3s ease-in-out',
+      modalOpen: 'fadeIn 0.3s ease-in-out',
+      modalClose: 'fadeOut 0.3s ease-in-out',
+      captureEnter: 'fadeIn 0.3s ease-in-out',
+      captureExit: 'fadeOut 0.3s ease-in-out',
       bounce: 'bounce 0.7s ease-in-out infinite',
       sheetOn: 'sheetOn 0.3s ease-in-out',
       sheetOff: 'sheetOff 0.3s ease-in',
