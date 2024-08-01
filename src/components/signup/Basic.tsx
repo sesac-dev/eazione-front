@@ -17,7 +17,6 @@ const Basic = () => {
   const [values, changer] = useInput<IBasicMember>({
     income: 0,
     phoneNumber: '',
-    email: '',
     familyMember: [{ name: '', relationship: '', residence: '' }],
     housingType: '',
     currentWorkplace: '',
@@ -74,17 +73,6 @@ const Basic = () => {
                 type="text"
                 className="w-full border-b px-1 pb-1 outline-none"
                 placeholder="Phone Number"
-              />
-            </div>
-            <div className="flex w-full flex-col gap-3">
-              <p className="text-ui_06">이메일 주소</p>
-              <input
-                value={values.email}
-                name="email"
-                onChange={changer}
-                type="text"
-                className="w-full border-b px-1 pb-1 outline-none"
-                placeholder="E-mail Address"
               />
             </div>
             <div className="flex w-full flex-col gap-3">

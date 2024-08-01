@@ -43,7 +43,6 @@ export interface IMember {
 export interface IBasicMember {
   income: number;
   phoneNumber: string;
-  email: string;
   familyMember: IFamily[];
   housingType: string;
   currentWorkplace: string;
