@@ -1,13 +1,12 @@
 import useInput from '@/hooks/@common/useInput';
 import { IPassport } from '@/types';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Passport = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [date, setDate] = useState<string>('');
   const [values, changer] = useInput<IPassport>({
     countryOfIssue: location.state.data.countryOfIssue,
     dateOfBirth: location.state.data.dateOfBirth,
