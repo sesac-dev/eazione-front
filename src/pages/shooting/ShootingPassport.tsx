@@ -5,15 +5,16 @@ import { icons } from '@/constants/icons';
 import { useSignup } from '@/hooks/signup/useSignup';
 import { ISignUpState } from '../signup/SignUpPage';
 
-import { dataURLtoFile } from '@/utils/dataURLtoFile';
+// import { dataURLtoFile } from '@/utils/dataURLtoFile';
 import { useCapture } from '@/hooks/@common/useCapture';
 import Loading from '@/components/@common/Loading';
+import passport from '@/assets/passport.png';
 
 const ShootingPassport = () => {
   const navigate = useNavigate();
   const { docsType, setDocsType } = useOutletContext<ISignUpState>();
   const [stream, setStream] = useState<MediaStream | null>(null);
-  const { videoRef, setCanvas, setDiv, getCanvasImage } = useCapture();
+  const { videoRef, setCanvas, setDiv } = useCapture();
   const { usePostDocsOCR } = useSignup();
   const { data, isPending, mutate: postDocsOCR } = usePostDocsOCR();
 
@@ -33,12 +34,17 @@ const ShootingPassport = () => {
   }, []);
 
   const [captured, setCaptured] = useState<boolean>(false);
-  const captureImage = () => {
+  const captureImage = async () => {
     setCaptured(true);
 
+    const response = await fetch(passport);
+    const blob = await response.blob();
+    const file = new File([blob], `${'passport'}.png`, { type: 'image/png' });
+
     const formData = new FormData();
-    const image = getCanvasImage()!;
-    formData.append('img', dataURLtoFile(image, 'passport'));
+    // const image = getCanvasImage()!;
+    // dataURLtoFile(image, 'passport')
+    formData.append('img', file);
 
     postDocsOCR({ docsType, docs: formData });
 

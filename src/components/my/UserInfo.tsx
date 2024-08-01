@@ -14,11 +14,17 @@ const UserInfo = () => {
       </div>
       <div className="flex flex-col gap-3 py-8">
         <p className="pb-2 text-left text-lg font-bold">등록한 신분증</p>
-        <div className="flex items-center gap-5 rounded-lg bg-ui_12 p-3">
+        <div
+          onClick={() => navigate('/signup/register/passport')}
+          className="flex items-center gap-5 rounded-lg bg-ui_12 p-3"
+        >
           <p>여권</p>
           <p className="text-[13px] text-ui_08">등록된 여권이 없습니다</p>
         </div>
-        <div className="flex items-center gap-5 rounded-lg bg-ui_12 p-3">
+        <div
+          onClick={() => navigate('/signup/register/foreigner')}
+          className="flex items-center gap-5 rounded-lg bg-ui_12 p-3"
+        >
           <p>외국인 등록증</p>
           <p className="text-[13px] text-ui_08">등록된 외국인 등록증이 없습니다</p>
         </div>
