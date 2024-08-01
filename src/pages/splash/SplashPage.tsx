@@ -21,7 +21,7 @@ const SplashPage = () => {
       <img src={splash_bot} />
       <div className="mb-14">
         <img src={splash_logo} className="py-4" />
-        <p className="w-full text-left text-[21px] font-bold text-white">EZ ONE</p>
+        <p className="w-full text-left text-[21px] font-bold text-white">EaziONE</p>
       </div>
     </div>
   );
